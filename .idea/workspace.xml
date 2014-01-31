@@ -52,15 +52,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LICENSE" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="LICENSE" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/LICENSE">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="13" selection-start="788" selection-end="788" vertical-scroll-proportion="0.56072354" vertical-offset="110" max-vertical-offset="884">
+            <state line="20" column="0" selection-start="1080" selection-end="1080" vertical-scroll-proportion="-20.357143" vertical-offset="110" max-vertical-offset="884">
               <folding />
             </state>
           </provider>
           <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
             <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".gitignore" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="1" column="6" selection-start="20" selection-end="20" vertical-scroll-proportion="0.042394016" vertical-offset="0" max-vertical-offset="802">
+              <folding />
+            </state>
           </provider>
         </entry>
       </file>
@@ -77,6 +86,7 @@
         <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/LICENSE" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -278,12 +288,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/LICENSE">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="13" selection-start="788" selection-end="788" vertical-scroll-proportion="0.56072354" vertical-offset="110" max-vertical-offset="884">
+        <state line="20" column="0" selection-start="1080" selection-end="1080" vertical-scroll-proportion="-20.357143" vertical-offset="110" max-vertical-offset="884">
           <folding />
         </state>
       </provider>
       <provider editor-type-id="com.intellij.persistence.database.editor.CsvTableFileEditorProvider">
         <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="6" selection-start="20" selection-end="20" vertical-scroll-proportion="0.042394016" vertical-offset="0" max-vertical-offset="802">
+          <folding />
+        </state>
       </provider>
     </entry>
   </component>
