@@ -1,84 +1,41 @@
-# gulp-karma [![NPM version][npm-image]][npm-url] [![Build status][travis-image]][travis-url]
-> Karma plugin for gulp 3
+# gulp-phpunit
+> PHPUnit plugin for gulp 3
 
 ## Usage
 
-First, install `gulp-karma` as a development dependency:
+First, install `gulp-phpunit` as a development dependency:
 
 ```shell
-npm install --save-dev gulp-karma
+npm install --save-dev gulp-phpunit
 ```
 
 Then, add it to your `gulpfile.js`:
 
 ```javascript
-var karma = require('gulp-karma');
+var phpunit = require('gulp-phpunit');
 
-var testFiles = [
-  'client/todo.js',
-  'client/todo.util.js',
-  'client/todo.App.js',
-  'test/client/*.js'
-];
 
-gulp.task('test', function() {
-  // Be sure to return the stream
-  return gulp.src(testFiles)
-    .pipe(karma({
-      configFile: 'karma.conf.js',
-      action: 'run'
-    }));
-});
-
-gulp.task('default', function() {
-  gulp.src(testFiles)
-    .pipe(karma({
-      configFile: 'karma.conf.js',
-      action: 'watch'
-    }));
+gulp.task('phpunit', function() {
+	var options = {debug: false};
+	gulp.src('./app/tests/*.php').pipe(phpunit('./vendor/bin/phpunit',options));
 });
 ```
 
 ## API
 
-### karma(options)
+### phpunit(phpunitpath,options)
 
-#### options.configFile
+#### phpunitpath
+
 Type: `String`
 
-The path to the Karma configuration file.
+The path to the desired PHPUnit binary
 
-#### options.action
-Type: `String`  
-Default: `run`
+#### options.debug
+Type: `Boolean`
 
-One of the following:
+Emit error details
 
-  * **`run`**: Start the server, run tests once, then exit.
-  * **`watch`**: Start the server, run tests once, then watch for changes and run when files change.
+## Credits
 
-#### options.*
-
-Any Karma option can be passed as part of the options object. See [Karma Configuration] for a complete list of options. **Note:** It's best practice to put options in your Karma config file.
-
-
-## Notes
-
-## Task return value
-
-Karma runs asynchronously. When using `action: 'run'` in a task, you should return the stream so gulp knows the task finished.
-
-## Watching
-
-Due to the way Karma works, using `gulp.watch` to watch files results in contrived usage that doesn't work as expected in some cases. As a result, Karma's watch mechanism is employed to make usage of this plugin as straight forward as possible.
-
-## Globs
-
-Globs are resolved before they're sent to Karma, so if you add a new file that matches a glob you passed using `gulp.src('test/*').pipe(karma)`, it won't be caught by Karma.
-
-
-[Karma Configuration]: http://karma-runner.github.io/0.10/config/configuration-file.html
-[travis-url]: http://travis-ci.org/lazd/gulp-karma
-[travis-image]: https://secure.travis-ci.org/lazd/gulp-karma.png?branch=master
-[npm-url]: https://npmjs.org/package/gulp-karma
-[npm-image]: https://badge.fury.io/js/gulp-karma.png
+PHPUnit written by Mike Erickson
