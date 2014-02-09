@@ -14,7 +14,12 @@ Then, add it to your `gulpfile.js`:
 ```javascript
 var phpunit = require('gulp-phpunit');
 
+// option 1: default format
+gulp.task('phpunit', function() {
+	gulp.src('./app/tests/*.php').pipe(phpunit());
+});
 
+// option 2: with defined bin and options
 gulp.task('phpunit', function() {
 	var options = {debug: false};
 	gulp.src('./app/tests/*.php').pipe(phpunit('./vendor/bin/phpunit',options));
@@ -30,11 +35,32 @@ gulp.task('phpunit', function() {
 Type: `String`
 
 The path to the desired PHPUnit binary
+- If not supplied, the defeault path will be ./vendor/bin/phpunit
 
 #### options.debug
 Type: `Boolean`
 
 Emit error details
+
+#### options.clear
+Type: `Boolean`
+
+Clear console before executing command
+
+#### options.testClass
+Type: `String`
+
+Define a specific class for testing (supply full path to test class)
+
+## Changelog
+
+- 0.0.2:
+  - Fixed issue which caused tests to be run multiple times
+  - Added 'clear' flag to clear console before running tests
+  - Added 'testClass' option to define a specific class to test
+  - Added './vendor/bin/phpunit' as default bin if no path supplied
+
+- 0.0.1: Initial Release
 
 ## Credits
 
