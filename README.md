@@ -76,6 +76,9 @@ Call user supplied callback to handle notification
 
 ## Changelog
 
+- 0.0.4:
+  - Updated version number, error publishing full archive to npm in 0.0.3 update
+
 - 0.0.3:
   - Added support return calling user supplied callback to handle notification
 

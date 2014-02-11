@@ -1,0 +1,132 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'publish' ]
+2 info using npm@1.3.15
+3 info using node@v0.10.22
+4 verbose publish [ '.' ]
+5 verbose cache add [ '.', null ]
+6 verbose cache add name=undefined spec="." args=[".",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: '.',
+7 verbose parsed url   path: '.',
+7 verbose parsed url   href: '.' }
+8 silly lockFile 3a52ce78- .
+9 verbose lock . /Users/mikee/.npm/3a52ce78-.lock
+10 verbose tar pack [ '/Users/mikee/tmp/npm-37021-uB0qO3o_/1392081106453-0.8308555295225233/tmp.tgz',
+10 verbose tar pack   '.' ]
+11 verbose tarball /Users/mikee/tmp/npm-37021-uB0qO3o_/1392081106453-0.8308555295225233/tmp.tgz
+12 verbose folder .
+13 info prepublish gulp-phpunit@0.0.3
+14 silly lockFile 1f1177db-tar tar://.
+15 verbose lock tar://. /Users/mikee/.npm/1f1177db-tar.lock
+16 silly lockFile 230f893a-06453-0-8308555295225233-tmp-tgz tar:///Users/mikee/tmp/npm-37021-uB0qO3o_/1392081106453-0.8308555295225233/tmp.tgz
+17 verbose lock tar:///Users/mikee/tmp/npm-37021-uB0qO3o_/1392081106453-0.8308555295225233/tmp.tgz /Users/mikee/.npm/230f893a-06453-0-8308555295225233-tmp-tgz.lock
+18 silly lockFile 1f1177db-tar tar://.
+19 silly lockFile 1f1177db-tar tar://.
+20 silly lockFile 230f893a-06453-0-8308555295225233-tmp-tgz tar:///Users/mikee/tmp/npm-37021-uB0qO3o_/1392081106453-0.8308555295225233/tmp.tgz
+21 silly lockFile 230f893a-06453-0-8308555295225233-tmp-tgz tar:///Users/mikee/tmp/npm-37021-uB0qO3o_/1392081106453-0.8308555295225233/tmp.tgz
+22 verbose tar unpack /Users/mikee/tmp/npm-37021-uB0qO3o_/1392081106453-0.8308555295225233/tmp.tgz
+23 silly lockFile a90b8b16-06453-0-8308555295225233-package tar:///Users/mikee/tmp/npm-37021-uB0qO3o_/1392081106453-0.8308555295225233/package
+24 verbose lock tar:///Users/mikee/tmp/npm-37021-uB0qO3o_/1392081106453-0.8308555295225233/package /Users/mikee/.npm/a90b8b16-06453-0-8308555295225233-package.lock
+25 silly lockFile 230f893a-06453-0-8308555295225233-tmp-tgz tar:///Users/mikee/tmp/npm-37021-uB0qO3o_/1392081106453-0.8308555295225233/tmp.tgz
+26 verbose lock tar:///Users/mikee/tmp/npm-37021-uB0qO3o_/1392081106453-0.8308555295225233/tmp.tgz /Users/mikee/.npm/230f893a-06453-0-8308555295225233-tmp-tgz.lock
+27 silly gunzTarPerm modes [ '755', '644' ]
+28 silly gunzTarPerm extractEntry package.json
+29 silly gunzTarPerm extractEntry .npmignore
+30 silly gunzTarPerm extractEntry README.md
+31 silly gunzTarPerm extractEntry LICENSE
+32 silly gunzTarPerm extractEntry index.js
+33 silly lockFile a90b8b16-06453-0-8308555295225233-package tar:///Users/mikee/tmp/npm-37021-uB0qO3o_/1392081106453-0.8308555295225233/package
+34 silly lockFile a90b8b16-06453-0-8308555295225233-package tar:///Users/mikee/tmp/npm-37021-uB0qO3o_/1392081106453-0.8308555295225233/package
+35 silly lockFile 230f893a-06453-0-8308555295225233-tmp-tgz tar:///Users/mikee/tmp/npm-37021-uB0qO3o_/1392081106453-0.8308555295225233/tmp.tgz
+36 silly lockFile 230f893a-06453-0-8308555295225233-tmp-tgz tar:///Users/mikee/tmp/npm-37021-uB0qO3o_/1392081106453-0.8308555295225233/tmp.tgz
+37 verbose tar pack [ '/Users/mikee/.npm/gulp-phpunit/0.0.3/package.tgz',
+37 verbose tar pack   '/Users/mikee/tmp/npm-37021-uB0qO3o_/1392081106453-0.8308555295225233/package' ]
+38 verbose tarball /Users/mikee/.npm/gulp-phpunit/0.0.3/package.tgz
+39 verbose folder /Users/mikee/tmp/npm-37021-uB0qO3o_/1392081106453-0.8308555295225233/package
+40 silly lockFile a90b8b16-06453-0-8308555295225233-package tar:///Users/mikee/tmp/npm-37021-uB0qO3o_/1392081106453-0.8308555295225233/package
+41 verbose lock tar:///Users/mikee/tmp/npm-37021-uB0qO3o_/1392081106453-0.8308555295225233/package /Users/mikee/.npm/a90b8b16-06453-0-8308555295225233-package.lock
+42 silly lockFile 7d1d4477-m-gulp-phpunit-0-0-3-package-tgz tar:///Users/mikee/.npm/gulp-phpunit/0.0.3/package.tgz
+43 verbose lock tar:///Users/mikee/.npm/gulp-phpunit/0.0.3/package.tgz /Users/mikee/.npm/7d1d4477-m-gulp-phpunit-0-0-3-package-tgz.lock
+44 silly lockFile a90b8b16-06453-0-8308555295225233-package tar:///Users/mikee/tmp/npm-37021-uB0qO3o_/1392081106453-0.8308555295225233/package
+45 silly lockFile a90b8b16-06453-0-8308555295225233-package tar:///Users/mikee/tmp/npm-37021-uB0qO3o_/1392081106453-0.8308555295225233/package
+46 silly lockFile 7d1d4477-m-gulp-phpunit-0-0-3-package-tgz tar:///Users/mikee/.npm/gulp-phpunit/0.0.3/package.tgz
+47 silly lockFile 7d1d4477-m-gulp-phpunit-0-0-3-package-tgz tar:///Users/mikee/.npm/gulp-phpunit/0.0.3/package.tgz
+48 silly lockFile e0820f5f-e-npm-gulp-phpunit-0-0-3-package /Users/mikee/.npm/gulp-phpunit/0.0.3/package
+49 verbose lock /Users/mikee/.npm/gulp-phpunit/0.0.3/package /Users/mikee/.npm/e0820f5f-e-npm-gulp-phpunit-0-0-3-package.lock
+50 silly lockFile e0820f5f-e-npm-gulp-phpunit-0-0-3-package /Users/mikee/.npm/gulp-phpunit/0.0.3/package
+51 silly lockFile e0820f5f-e-npm-gulp-phpunit-0-0-3-package /Users/mikee/.npm/gulp-phpunit/0.0.3/package
+52 verbose tar unpack /Users/mikee/.npm/gulp-phpunit/0.0.3/package.tgz
+53 silly lockFile 2cd3e1ff-e-npm-gulp-phpunit-0-0-3-package tar:///Users/mikee/.npm/gulp-phpunit/0.0.3/package
+54 verbose lock tar:///Users/mikee/.npm/gulp-phpunit/0.0.3/package /Users/mikee/.npm/2cd3e1ff-e-npm-gulp-phpunit-0-0-3-package.lock
+55 silly lockFile 7d1d4477-m-gulp-phpunit-0-0-3-package-tgz tar:///Users/mikee/.npm/gulp-phpunit/0.0.3/package.tgz
+56 verbose lock tar:///Users/mikee/.npm/gulp-phpunit/0.0.3/package.tgz /Users/mikee/.npm/7d1d4477-m-gulp-phpunit-0-0-3-package-tgz.lock
+57 silly gunzTarPerm modes [ '755', '644' ]
+58 silly gunzTarPerm extractEntry package.json
+59 silly gunzTarPerm extractEntry .npmignore
+60 silly gunzTarPerm extractEntry README.md
+61 silly gunzTarPerm extractEntry LICENSE
+62 silly gunzTarPerm extractEntry index.js
+63 silly lockFile 2cd3e1ff-e-npm-gulp-phpunit-0-0-3-package tar:///Users/mikee/.npm/gulp-phpunit/0.0.3/package
+64 silly lockFile 2cd3e1ff-e-npm-gulp-phpunit-0-0-3-package tar:///Users/mikee/.npm/gulp-phpunit/0.0.3/package
+65 silly lockFile 7d1d4477-m-gulp-phpunit-0-0-3-package-tgz tar:///Users/mikee/.npm/gulp-phpunit/0.0.3/package.tgz
+66 silly lockFile 7d1d4477-m-gulp-phpunit-0-0-3-package-tgz tar:///Users/mikee/.npm/gulp-phpunit/0.0.3/package.tgz
+67 verbose chmod /Users/mikee/.npm/gulp-phpunit/0.0.3/package.tgz 644
+68 verbose chown /Users/mikee/.npm/gulp-phpunit/0.0.3/package.tgz [ 0, 20 ]
+69 silly lockFile 3a52ce78- .
+70 silly lockFile 3a52ce78- .
+71 silly publish { name: 'gulp-phpunit',
+71 silly publish   version: '0.0.3',
+71 silly publish   description: 'PHPUnit plugin for Gulp',
+71 silly publish   main: 'index.js',
+71 silly publish   dependencies: { 'map-stream': '~0.0.4', 'gulp-util': '~2.2.5' },
+71 silly publish   devDependencies: { mocha: '*', should: '*' },
+71 silly publish   scripts: { test: 'mocha' },
+71 silly publish   repository:
+71 silly publish    { type: 'git',
+71 silly publish      url: 'git://github.com/mikeerickson/gulp-phpunit' },
+71 silly publish   keywords: [ 'gulpplugin', 'phpunit' ],
+71 silly publish   author: { name: 'Mike Erickson', email: 'codedungeon@gmail.com' },
+71 silly publish   license: 'MIT',
+71 silly publish   bugs: { url: 'https://github.com/mikeerickson/gulp-phpunit/issues' },
+71 silly publish   engines: { node: '>=0.10.0' },
+71 silly publish   readme: '# gulp-phpunit\n> PHPUnit plugin for gulp 3\n\n## Usage\n\nFirst, install `gulp-phpunit` as a development dependency:\n\n```shell\nnpm install --save-dev gulp-phpunit\n```\n\nThen, add it to your `gulpfile.js`:\n\n```javascript\nvar phpunit = require(\'gulp-phpunit\');\n\n// option 1: default format\ngulp.task(\'phpunit\', function() {\n\tgulp.src(\'./app/tests/*.php\').pipe(phpunit());\n});\n\n// option 2: with defined bin and options\ngulp.task(\'phpunit\', function() {\n\tvar options = {debug: false};\n\tgulp.src(\'./app/tests/*.php\').pipe(phpunit(\'./vendor/bin/phpunit\',options));\n});\n\n// option 3: supply callback to integrate something like notification (using gulp-notify)\n\nvar gulp = require(\'gulp\'),\n notify  = require(\'gulp-notify\'),\n phpunit = require(\'gulp-phpunit\');\n\ngulp.task(\'phpunit\', function() {\n\tvar options = {debug: false, notify: true};\n\tgulp.src(\'app/tests/*.php\')\n\t\t.pipe(phpunit(\'\', options))\n\t\t.on(\'error\', notify.onError({\n\t\t\ttitle: "Failed Tests!",\n\t\t\tmessage: "Error(s) occurred during testing..."\n\t\t}));\n});\n\n```\n\n## API\n\n### phpunit(phpunitpath,options)\n\n#### phpunitpath\n\nType: `String`\n\nThe path to the desired PHPUnit binary\n- If not supplied, the defeault path will be ./vendor/bin/phpunit\n\n#### options.debug\nType: `Boolean`\n\nEmit error details\n\n#### options.clear\nType: `Boolean`\n\nClear console before executing command\n\n#### options.testClass\nType: `String`\n\nDefine a specific class for testing (supply full path to test class)\n\n#### options.notify\nType: `Boolean`\n\nCall user supplied callback to handle notification\n\n## Changelog\n\n- 0.0.3:\n  - Added support return calling user supplied callback to handle notification\n\n- 0.0.2:\n  - Fixed issue which caused tests to be run multiple times\n  - Added \'clear\' flag to clear console before running tests\n  - Added \'testClass\' option to define a specific class to test\n  - Added \'./vendor/bin/phpunit\' as default bin if no path supplied\n\n- 0.0.1: Initial Release\n\n## Credits\n\nPHPUnit written by Mike Erickson\n',
+71 silly publish   readmeFilename: 'README.md',
+71 silly publish   homepage: 'https://github.com/mikeerickson/gulp-phpunit',
+71 silly publish   _id: 'gulp-phpunit@0.0.3',
+71 silly publish   dist: { shasum: 'cfd6cb6d5d602d76e64aac5ae1397237eebb6c20' },
+71 silly publish   _from: '.' }
+72 verbose url raw gulp-phpunit
+73 verbose url resolving [ 'https://registry.npmjs.org/', './gulp-phpunit' ]
+74 verbose url resolved https://registry.npmjs.org/gulp-phpunit
+75 info trying registry request attempt 1 at 17:11:46
+76 http PUT https://registry.npmjs.org/gulp-phpunit
+77 http 409 https://registry.npmjs.org/gulp-phpunit
+78 verbose url raw gulp-phpunit
+79 verbose url resolving [ 'https://registry.npmjs.org/', './gulp-phpunit' ]
+80 verbose url resolved https://registry.npmjs.org/gulp-phpunit
+81 info trying registry request attempt 1 at 17:11:47
+82 http GET https://registry.npmjs.org/gulp-phpunit
+83 http 200 https://registry.npmjs.org/gulp-phpunit
+84 error publish fail Cannot publish over existing version.
+84 error publish fail Update the 'version' field in package.json and try again.
+84 error publish fail
+84 error publish fail If the previous version was published in error, see:
+84 error publish fail     npm help unpublish
+84 error publish fail
+84 error publish fail To automatically increment version numbers, see:
+84 error publish fail     npm help version
+85 error System Darwin 13.0.0
+86 error command "node" "/usr/local/bin/npm" "publish"
+87 error cwd /Users/mikee/Documents/Projects/gulp-phpunit
+88 error node -v v0.10.22
+89 error npm -v 1.3.15
+90 error code EPUBLISHCONFLICT
+91 verbose exit [ 1, true ]
