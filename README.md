@@ -24,6 +24,23 @@ gulp.task('phpunit', function() {
 	var options = {debug: false};
 	gulp.src('./app/tests/*.php').pipe(phpunit('./vendor/bin/phpunit',options));
 });
+
+// option 3: supply callback to integrate something like notification (using gulp-notify)
+
+var gulp = require('gulp'),
+ notify  = require('gulp-notify'),
+ phpunit = require('gulp-phpunit');
+
+gulp.task('phpunit', function() {
+	var options = {debug: false, notify: true};
+	gulp.src('app/tests/*.php')
+		.pipe(phpunit('', options))
+		.on('error', notify.onError({
+			title: "Failed Tests!",
+			message: "Error(s) occurred during testing..."
+		}));
+});
+
 ```
 
 ## API
@@ -52,7 +69,15 @@ Type: `String`
 
 Define a specific class for testing (supply full path to test class)
 
+#### options.notify
+Type: `Boolean`
+
+Call user supplied callback to handle notification
+
 ## Changelog
+
+- 0.0.3:
+  - Added support return calling user supplied callback to handle notification
 
 - 0.0.2:
   - Fixed issue which caused tests to be run multiple times

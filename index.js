@@ -33,6 +33,10 @@ module.exports = function(command, opt){
 		opt.testClass = '';
 	}
 
+	if(typeof opt.notify === 'undefined'){
+		opt.notify = false;
+	}
+
 	return map(function (file, cb) {
 		var cmd = opt.clear ? 'clear && ' + command : command;
 		if(opt.testClass)
@@ -53,7 +57,9 @@ module.exports = function(command, opt){
 				if(opt.debug && error) {
 					console.log(error);
 				}
-
+				if(opt.notify) {
+					cb(error, file);
+				}
 			});
 		}
 	});
