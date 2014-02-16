@@ -4,7 +4,8 @@
 
 var map = require('map-stream'),
 	gutil = require('gulp-util'),
-	 exec = require('child_process').exec;
+	color = require('colors'),
+	exec = require('child_process').exec;
 
 module.exports = function(command, opt){
 	var counter = 0;
@@ -42,6 +43,11 @@ module.exports = function(command, opt){
 		if(opt.testClass)
 			cmd += ' ' + opt.testClass;
 		if(counter == 0) {
+
+			if (opt.debug) {
+				console.log('\n       *** Debug Cmd: '.yellow + cmd.yellow + ' ***\n'.yellow);
+			}
+
 			counter++;
 			exec(cmd, function (error, stdout, stderr) {
 

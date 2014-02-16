@@ -76,20 +76,29 @@ Call user supplied callback to handle notification
 
 ## Changelog
 
+- 0.1.0:
+    - Enhanced debug output (supporting color)
+
 - 0.0.4:
-  - Updated version number, error publishing full archive to npm in 0.0.3 update
+    - Updated version number, error publishing full archive to npm in 0.0.3 update
 
 - 0.0.3:
-  - Added support return calling user supplied callback to handle notification
+    - Added support return calling user supplied callback to handle notification
 
 - 0.0.2:
-  - Fixed issue which caused tests to be run multiple times
-  - Added 'clear' flag to clear console before running tests
-  - Added 'testClass' option to define a specific class to test
-  - Added './vendor/bin/phpunit' as default bin if no path supplied
+    - Fixed issue which caused tests to be run multiple times
+    - Added 'clear' flag to clear console before running tests
+    - Added 'testClass' option to define a specific class to test
+    - Added './vendor/bin/phpunit' as default bin if no path supplied
 
 - 0.0.1: Initial Release
 
 ## Credits
 
-PHPUnit written by Mike Erickson
+gulp-phpunit written by Mike Erickson
+
+E-Mail: [codedungeon@gmail.com](mailto:codedungeon@gmail.com)
+
+Twitter: [@codedungeon](http://twitter.com/codedungeon)
+
+Webiste: [codedungeon.org](http://codedungeon.org)
