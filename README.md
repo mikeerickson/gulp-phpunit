@@ -82,8 +82,8 @@ Call user supplied callback to handle notification
 
 ## Changelog
 
-- 0.2.0: Update Default Command - Windows Fix
-    - Fixed default command when using windows
+- 0.2.1: Update Default Command - Windows Fix
+    - Fixed default command when using windows (thx @imissions)
 
 - 0.1.0:
     - Enhanced debug output (supporting color)
