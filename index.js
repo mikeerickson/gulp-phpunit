@@ -4,16 +4,17 @@
 
 var map = require('map-stream'),
 	gutil = require('gulp-util'),
-	color = require('colors'),
-	exec = require('child_process').exec;
+ colors = require('colors'),
+	   os = require('os'),
+	 exec = require('child_process').exec;
 
 module.exports = function(command, opt){
 	var counter = 0;
 
 	// if path to phpunit bin not supplied, use default vendor/bin path
-	if (!command) {
-		command = './vendor/bin/phpunit';
-	}
+	if(! command)
+		(os.platform() === 'win32') ? command = '.\\vendor\\bin\\phpunit' : command = './vendor/bin/phpunit';
+
 	if (!opt) {
 		opt = {};
 	}

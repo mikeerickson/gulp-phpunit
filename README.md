@@ -25,6 +25,12 @@ gulp.task('phpunit', function() {
 	gulp.src('./app/tests/*.php').pipe(phpunit('./vendor/bin/phpunit',options));
 });
 
+
+// Note: Windows OS may require double backslashes if using other than default location (option 1)
+gulp.task('phpunit', function() {
+  gulp.src('./app/tests/*.php').pipe(phpunit('.\\path\\to\\phpunit'));
+});
+
 // option 3: supply callback to integrate something like notification (using gulp-notify)
 
 var gulp = require('gulp'),
@@ -75,6 +81,9 @@ Type: `Boolean`
 Call user supplied callback to handle notification
 
 ## Changelog
+
+- 0.2.0: Update Default Command - Windows Fix
+    - Fixed default command when using windows
 
 - 0.1.0:
     - Enhanced debug output (supporting color)
