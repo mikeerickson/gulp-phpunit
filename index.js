@@ -17,29 +17,16 @@ module.exports = function(command, opt) {
 			command = '.\\vendor\\bin\\phpunit';
 		}
 	}
-	if (!opt) {
-		opt = {};
-	}
 
-	if (typeof opt.silent === 'undefined') {
-		opt.silent = false;
-	}
+	// create default opt object if no options supplied
+	if (!opt) { opt = {}; }
 
-	if (typeof opt.debug === 'undefined'){
-		opt.debug = false;
-	}
-
-	if(typeof opt.clear === 'undefined'){
-		opt.clear = false;
-	}
-
-	if(typeof opt.testClass === 'undefined') {
-		opt.testClass = '';
-	}
-
-	if(typeof opt.notify === 'undefined') {
-		opt.notify = false;
-	}
+	// assign default options if one is not supplied
+	if (typeof opt.silent === 'undefined') { opt.silent = false; }
+	if (typeof opt.debug === 'undefined'){ opt.debug = false; }
+	if(typeof opt.clear === 'undefined'){ opt.clear = false; }
+	if(typeof opt.testClass === 'undefined') { opt.testClass = ''; }
+	if(typeof opt.notify === 'undefined') { opt.notify = false; }
 
 	return map(function (file, cb) {
 		var cmd = opt.clear ? 'clear && ' + command : command;

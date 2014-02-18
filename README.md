@@ -82,7 +82,7 @@ Call user supplied callback to handle notification
 
 ## Changelog
 
-- 0.2.2: Refactoring
+- 0.3.0: Refactoring
     - Refactored color console message to use gulp-util instance instead of color plugi
 
 - 0.2.1: Update Default Command - Windows Fix
