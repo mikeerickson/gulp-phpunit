@@ -1,20 +1,22 @@
 /*jshint node:true */
 
-"use strict";
+'use strict';
 
 var map = require('map-stream'),
 	gutil = require('gulp-util'),
- colors = require('colors'),
-	   os = require('os'),
-	 exec = require('child_process').exec;
+     os = require('os'),
+   exec = require('child_process').exec;
 
-module.exports = function(command, opt){
+module.exports = function(command, opt) {
 	var counter = 0;
 
 	// if path to phpunit bin not supplied, use default vendor/bin path
-	if(! command)
-		(os.platform() === 'win32') ? command = '.\\vendor\\bin\\phpunit' : command = './vendor/bin/phpunit';
-
+	if(! command) {
+		command = './vendor/bin/phpunit';
+		if (os.platform() === 'win32') {
+			command = '.\\vendor\\bin\\phpunit';
+		}
+	}
 	if (!opt) {
 		opt = {};
 	}
@@ -31,22 +33,23 @@ module.exports = function(command, opt){
 		opt.clear = false;
 	}
 
-	if(typeof opt.testClass === 'undefined'){
+	if(typeof opt.testClass === 'undefined') {
 		opt.testClass = '';
 	}
 
-	if(typeof opt.notify === 'undefined'){
+	if(typeof opt.notify === 'undefined') {
 		opt.notify = false;
 	}
 
 	return map(function (file, cb) {
 		var cmd = opt.clear ? 'clear && ' + command : command;
-		if(opt.testClass)
+		if(opt.testClass) {
 			cmd += ' ' + opt.testClass;
-		if(counter == 0) {
+		}
+		if(counter === 0) {
 
 			if (opt.debug) {
-				console.log('\n       *** Debug Cmd: '.yellow + cmd.yellow + ' ***\n'.yellow);
+				console.log(gutil.colors.yellow('\n       *** Debug Cmd: ' + cmd  + ' ***\n'));
 			}
 
 			counter++;
