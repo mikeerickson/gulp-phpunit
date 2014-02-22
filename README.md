@@ -82,6 +82,9 @@ Call user supplied callback to handle notification
 
 ## Changelog
 
+- 0.4.0: Added check for invalid PHPUnit binary path as first parameter
+    - Safeguard to assure options is not passed as first parameter
+
 - 0.3.0: Refactoring
     - Refactored color console message to use gulp-util instance instead of color plugi
 

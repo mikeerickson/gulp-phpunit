@@ -6,7 +6,7 @@ var gulpunit  = require('../'),
 require('mocha');
 
 describe('gulp-phpunit', function() {
-	describe('smoke test', function() {
+
 		it('should not error if no parameters passed', function(done) {
 			// Arrange
 			var caughtErr;
@@ -23,5 +23,24 @@ describe('gulp-phpunit', function() {
 			done();
 
 		});
+
+	it('should throw error if object passed as first parameter', function(done) {
+
+		// arrange
+		var caughtErr;
+
+		// act
+		try {
+			gulpunit({debug: true});
+		} catch (err) {
+			caughtErr = err;
+		}
+
+		// assert
+		should.exist(caughtErr);
+
+		done();
+
 	});
+
 });

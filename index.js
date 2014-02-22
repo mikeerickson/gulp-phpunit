@@ -10,6 +10,10 @@ var map = require('map-stream'),
 module.exports = function(command, opt) {
 	var counter = 0;
 
+	if (typeof command === 'object') {
+		throw new Error('Invalid PHPUnit Binary');
+	}
+
 	// if path to phpunit bin not supplied, use default vendor/bin path
 	if(! command) {
 		command = './vendor/bin/phpunit';
