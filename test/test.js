@@ -7,22 +7,22 @@ require('mocha');
 
 describe('gulp-phpunit', function() {
 
-		it('should not error if no parameters passed', function(done) {
-			// Arrange
-			var caughtErr;
+	it('should not throw error if no parameters passed', function(done) {
+		// Arrange
+		var caughtErr;
 
-			// Act
-			try {
-				gulpunit();
-			} catch (err) {
-				caughtErr = err;
-			}
+		// Act
+		try {
+			gulpunit();
+		} catch (err) {
+			caughtErr = err;
+		}
 
-			// Assert
-			should.not.exist(caughtErr);
-			done();
+		// Assert
+		should.not.exist(caughtErr);
+		done();
 
-		});
+	});
 
 	it('should throw error if object passed as first parameter', function(done) {
 

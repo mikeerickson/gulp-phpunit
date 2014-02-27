@@ -82,6 +82,9 @@ Call user supplied callback to handle notification
 
 ## Changelog
 
+- 0.4.1: Code Cleanup
+    - Removed calls to console.log -> gutil.log (playing nice in the playground)
+    - Fixed issue with calling as depedency task (thanks @taai)
 - 0.4.0: Added check for invalid PHPUnit binary path as first parameter
     - Safeguard to assure options is not passed as first parameter
 

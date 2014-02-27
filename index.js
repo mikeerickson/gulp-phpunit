@@ -11,7 +11,8 @@ module.exports = function(command, opt) {
 	var counter = 0;
 
 	if (typeof command === 'object') {
-		throw new Error('Invalid PHPUnit Binary');
+//		throw new Error('Invalid PHPUnit Binary');
+		throw new gutil.PluginError("gulp-phpunit", "Invalid PHPUnit Binary");
 	}
 
 	// if path to phpunit bin not supplied, use default vendor/bin path
@@ -40,7 +41,7 @@ module.exports = function(command, opt) {
 		if(counter === 0) {
 
 			if (opt.debug) {
-				console.log(gutil.colors.yellow('\n       *** Debug Cmd: ' + cmd  + ' ***\n'));
+				gutil.log(gutil.colors.yellow('\n       *** Debug Cmd: ' + cmd  + ' ***\n'));
 			}
 
 			counter++;
@@ -56,10 +57,12 @@ module.exports = function(command, opt) {
 					gutil.log(stdout);
 				}
 				if(opt.debug && error) {
-					console.log(error);
+					gutil.log(error);
 				}
 				if(opt.notify) {
 					cb(error, file);
+				} else {
+					cb(null, file);
 				}
 			});
 		}
