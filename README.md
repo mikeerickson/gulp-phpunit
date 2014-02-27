@@ -82,6 +82,8 @@ Call user supplied callback to handle notification
 
 ## Changelog
 
+- 0.4.2: Added additional tests
+
 - 0.4.1: Code Cleanup
     - Removed calls to console.log -> gutil.log (playing nice in the playground)
     - Fixed issue with calling as dependency task (thanks @taai)
