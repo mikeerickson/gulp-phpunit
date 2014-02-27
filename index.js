@@ -8,64 +8,67 @@ var map = require('map-stream'),
    exec = require('child_process').exec;
 
 module.exports = function(command, opt) {
-	var counter = 0;
+	// Assign default options if one is not supplied
+	opt = opt || {};
+	opt = {
+		silent:    opt.silent || false,
+		debug:     opt.debug  || false,
+		clear:     opt.clear  || false,
+		testClass: opt.testClass  || ''
+	};
 
-	if (typeof command === 'object') {
-//		throw new Error('Invalid PHPUnit Binary');
-		throw new gutil.PluginError("gulp-phpunit", "Invalid PHPUnit Binary");
-	}
-
-	// if path to phpunit bin not supplied, use default vendor/bin path
-	if(! command) {
+	// If path to phpunit bin not supplied, use default vendor/bin path
+	if (!command) {
 		command = './vendor/bin/phpunit';
+
+		// Use the backslashes on Windows
 		if (os.platform() === 'win32') {
-			command = '.\\vendor\\bin\\phpunit';
+			command = command.replace(/[/]/g, '\\');
 		}
+	} else if (typeof command !== 'string') {
+		throw new gutil.PluginError('gulp-phpunit', 'Invalid PHPUnit Binary');
 	}
 
-	// create default opt object if no options supplied
-	if (!opt) { opt = {}; }
+	var launched = false;
 
-	// assign default options if one is not supplied
-	if (typeof opt.silent === 'undefined') { opt.silent = false; }
-	if (typeof opt.debug === 'undefined'){ opt.debug = false; }
-	if(typeof opt.clear === 'undefined'){ opt.clear = false; }
-	if(typeof opt.testClass === 'undefined') { opt.testClass = ''; }
-	if(typeof opt.notify === 'undefined') { opt.notify = false; }
+	return map(function(file, cb) {
+		// First file triggers the command, so other files does not matter
+		if (launched) return cb(null, file);
+		launched = true;
 
-	return map(function (file, cb) {
 		var cmd = opt.clear ? 'clear && ' + command : command;
-		if(opt.testClass) {
+
+		if (opt.testClass) {
 			cmd += ' ' + opt.testClass;
 		}
-		if(counter === 0) {
 
-			if (opt.debug) {
-				gutil.log(gutil.colors.yellow('\n       *** Debug Cmd: ' + cmd  + ' ***\n'));
+		if (opt.debug) {
+			gutil.log(gutil.colors.yellow('\n       *** Debug Cmd: ' + cmd  + ' ***\n'));
+		}
+
+		exec(cmd, function(error, stdout, stderr) {
+			if (!opt.silent && stderr) {
+				gutil.log(stderr);
 			}
 
-			counter++;
-			exec(cmd, function (error, stdout, stderr) {
+			if (!opt.silent) {
+				// Trim trailing cr-lf
+				stdout = stdout.trim();
 
-				if (!opt.silent && stderr) {
-					gutil.log(stderr);
-				}
 				if (stdout) {
-					stdout = stdout.trim(); // Trim trailing cr-lf
-				}
-				if (!opt.silent && stdout) {
 					gutil.log(stdout);
 				}
-				if(opt.debug && error) {
+			}
+
+			if (error) {
+				if (opt.debug) {
 					gutil.log(error);
 				}
-				if(opt.notify) {
-					cb(error, file);
-				} else {
-					cb(null, file);
-				}
-			});
-		}
-	});
 
+				cb(error, file);
+			} else {
+				cb(null, file);
+			}
+		});
+	});
 };
