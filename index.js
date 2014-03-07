@@ -3,9 +3,9 @@
 'use strict';
 
 var map   = require('map-stream'),
-	gutil = require('gulp-util'),
-    os    = require('os'),
-    exec  = require('child_process').exec;
+  gutil   = require('gulp-util'),
+  os      = require('os'),
+  exec    = require('child_process').exec;
 
 module.exports = function(command, opt) {
 	// Assign default options if one is not supplied
@@ -31,9 +31,11 @@ module.exports = function(command, opt) {
 
 	var launched = false;
 
-	return map(function(file, cb) {
+	return map( function(file, cb) {
 		// First file triggers the command, so other files does not matter
-		if (launched) { return cb(null, file); }
+		if (launched) {
+			return cb(null, file);
+		}
 		launched = true;
 
 		var cmd = opt.clear ? 'clear && ' + command : command;
@@ -60,15 +62,16 @@ module.exports = function(command, opt) {
 				}
 			}
 
+			// call user callback if ano error occurs
 			if (error) {
 				if (opt.debug) {
 					gutil.log(error);
 				}
-
 				cb(error, file);
 			} else {
 				cb(null, file);
 			}
+
 		});
 	});
 };

@@ -1,13 +1,14 @@
 'use strict';
 
-var gulpunit  = require('../'),
-    should    = require('should');
+var gulpunit = require('../'),
+  should     = require('should');
 
 require('mocha');
 
 describe('gulp-phpunit', function() {
 
 	it('should not throw error if no parameters passed', function(done) {
+
 		// Arrange
 		var caughtErr;
 
@@ -20,6 +21,8 @@ describe('gulp-phpunit', function() {
 
 		// Assert
 		should.not.exist(caughtErr);
+
+		// exit gracefully
 		done();
 
 	});
@@ -39,6 +42,7 @@ describe('gulp-phpunit', function() {
 		// assert
 		should.exist(caughtErr);
 
+		// exit gracefully
 		done();
 
 	});

@@ -83,7 +83,7 @@ Call user supplied callback to handle notification
 ## Changelog
 
 - 0.5.0: Complete refactoring and cleanup (thanks @taai)
-    - Simplied code and callback handling
+    - Simplified code and callback handling
     - Addressed additional issues related to dependecies
 
 - 0.4.2: Added additional tests
