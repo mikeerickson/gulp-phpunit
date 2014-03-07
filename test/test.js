@@ -40,7 +40,7 @@ describe('gulp-phpunit', function() {
 		}
 
 		// assert
-		should.exist(caughtErr);
+		should.not.exist(caughtErr);
 
 		// exit gracefully
 		done();
