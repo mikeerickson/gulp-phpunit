@@ -82,6 +82,10 @@ Call user supplied callback to handle notification
 
 ## Changelog
 
+- 0.5.1: Added CI Support
+    - Added .travis support
+    - Added .circle support
+
 - 0.5.0: Complete refactoring and cleanup (thanks @taai)
     - Simplified code and callback handling
     - Addressed additional issues related to dependecies
