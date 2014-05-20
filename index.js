@@ -11,10 +11,11 @@ module.exports = function(command, opt) {
 	// Assign default options if one is not supplied
 	opt = opt || {};
 	opt = {
-		silent:    opt.silent || false,
-		debug:     opt.debug  || false,
-		clear:     opt.clear  || false,
-		testClass: opt.testClass  || ''
+		silent:             opt.silent || false,
+		debug:              opt.debug  || false,
+		clear:              opt.clear  || false,
+		configurationFile:  opt.configurationFile  || false,
+		testClass:          opt.testClass  || ''
 	};
 
 	// If path to phpunit bin not supplied, use default vendor/bin path
@@ -42,6 +43,10 @@ module.exports = function(command, opt) {
 
 		if (opt.testClass) {
 			cmd += ' ' + opt.testClass;
+		}
+
+		if (opt.configurationFile) {
+			cmd += ' -c ' + opt.configurationFile;
 		}
 
 		if (opt.debug) {
