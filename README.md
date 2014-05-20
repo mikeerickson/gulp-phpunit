@@ -75,6 +75,11 @@ Type: `String`
 
 Define a specific class for testing (supply full path to test class)
 
+#### options.configurationFile
+Type: `String`
+
+Define a path to an xml configuration file (supply full path and filename)
+
 #### options.notify
 Type: `Boolean`
 
@@ -130,4 +135,4 @@ E-Mail: [codedungeon@gmail.com](mailto:codedungeon@gmail.com)
 
 Twitter: [@codedungeon](http://twitter.com/codedungeon)
 
-Webiste: [codedungeon.org](http://codedungeon.org)
+Website: [codedungeon.org](http://codedungeon.org)
