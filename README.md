@@ -87,6 +87,10 @@ Call user supplied callback to handle notification
 
 ## Changelog
 
+- 0.5.2: Small adjustments and Configuration File Support (thanks @wayneashleyberry)
+   - Added Configuration File Support
+   - Removed Node 0.9 from Travis support
+   
 - 0.5.1: Added CI Support
     - Added .travis support
     - Added .circle support
