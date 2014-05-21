@@ -87,6 +87,8 @@ Call user supplied callback to handle notification
 
 ## Changelog
 
+- 0.5.3 Updated dev dependencies to use latest builds
+
 - 0.5.2: Small adjustments and Configuration File Support (thanks @wayneashleyberry)
    - Added Configuration File Support
    - Removed Node 0.9 from Travis support
