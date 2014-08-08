@@ -181,8 +181,12 @@ module.exports = function(command, opt) {
 		}
 
 		// append debug code if switch enabled
-		if ((opt.debug) || (opt.dryRun)){
-			gutil.log(gutil.colors.yellow('\n       *** Debug Cmd: ' + cmd  + ' ***\n'));
+		if ((opt.debug) || (opt.dryRun)) {
+			if(opt.dryRun) {
+				gutil.log(gutil.colors.green('\n\n       *** Dry Run Cmd: ' + cmd  + ' ***\n'));
+			} else {
+				gutil.log(gutil.colors.yellow('\n\n       *** Debug Cmd: ' + cmd  + ' ***\n'));
+			}
 		}
 
 		/* -- EXECUTE -- */
