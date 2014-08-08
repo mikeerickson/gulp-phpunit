@@ -16,6 +16,7 @@ module.exports = function(command, opt) {
 		silent:             opt.silent              || false,
 		debug:              opt.debug               || false,
 		clear:              opt.clear               || false,
+		dryRun:             opt.dryRun               || false,
 
 		// code coverage options
 		coverageClover:     opt.coverageClover      || '',
@@ -96,7 +97,6 @@ module.exports = function(command, opt) {
 			return cb(null, file);
 		}
 		launched = true;
-
 
 		var cmd = opt.clear ? 'clear && ' + command : command;
 
@@ -181,35 +181,38 @@ module.exports = function(command, opt) {
 		}
 
 		// append debug code if switch enabled
-		if (opt.debug) {
+		if ((opt.debug) || (opt.dryRun)){
 			gutil.log(gutil.colors.yellow('\n       *** Debug Cmd: ' + cmd  + ' ***\n'));
 		}
 
 		/* -- EXECUTE -- */
-		exec(cmd, function(error, stdout, stderr) {
-			if (!opt.silent && stderr) {
-				gutil.log(stderr);
-			}
-
-			if (!opt.silent) {
-				// Trim trailing cr-lf
-				stdout = stdout.trim();
-
-				if (stdout) {
-					gutil.log(stdout);
+		if( ! opt.dryRun ) {
+			exec(cmd, function (error, stdout, stderr) {
+				if (!opt.silent && stderr) {
+					gutil.log(stderr);
 				}
-			}
 
-			// call user callback if ano error occurs
-			if (error) {
-				if (opt.debug) {
-					gutil.log(error);
+				if (!opt.silent) {
+					// Trim trailing cr-lf
+					stdout = stdout.trim();
+
+					if (stdout) {
+						gutil.log(stdout);
+					}
 				}
-				cb(error, file);
-			} else {
-				cb(null, file);
-			}
 
-		});
+				// call user callback if ano error occurs
+				if (error) {
+					if (opt.debug) {
+						gutil.log(error);
+					}
+					cb(error, file);
+				} else {
+					cb(null, file);
+				}
+
+			});
+		}
+
 	});
 };

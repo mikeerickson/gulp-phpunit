@@ -65,10 +65,20 @@ Type: `Boolean`
 
 Debug mode enabled (enables --debug switch as well)
 
+#### options.dryRun
+Type: `Boolean`
+
+Configures PHPUnit command but only echo call (doesnt actually execute command)
+
 #### options.clear
 Type: `Boolean`
 
 Clear console before executing command
+
+#### options.dryRun
+Type: `Boolean`
+
+Executes dry run (doesn't actually execute tests, just echo command that would be executed)
 
 #### options.testClass
 Type: `String`
@@ -317,6 +327,9 @@ Prepend PHP's include_path with given path(s).
 
 
 ## Changelog
+
+- 0.6.2 Updated general options
+    - Added dryRun option (echo constructed PHPUnit command) sets opt.debug true
 
 - 0.6.1 Updated README to include all udpated options
 
