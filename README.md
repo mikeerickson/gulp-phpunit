@@ -328,6 +328,9 @@ Prepend PHP's include_path with given path(s).
 
 ## Changelog
 
+- 0.6.3 Updated general options
+    - Changed dry run output text color
+
 - 0.6.2 Updated general options
     - Added dryRun option (echo constructed PHPUnit command) sets opt.debug true
 
