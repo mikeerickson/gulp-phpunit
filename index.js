@@ -16,7 +16,7 @@ module.exports = function(command, opt) {
 		silent:             opt.silent              || false,
 		debug:              opt.debug               || false,
 		clear:              opt.clear               || false,
-		dryRun:             opt.dryRun               || false,
+		dryRun:             opt.dryRun              || false,
 
 		// code coverage options
 		coverageClover:     opt.coverageClover      || '',
@@ -141,6 +141,7 @@ module.exports = function(command, opt) {
 		if(opt.stopOnRisky)         { cmd += ' --stop-on-risky'; }
 		if(opt.stopOnSkipped)       { cmd += ' --stop-on-skipped'; }
 		if(opt.stopOnIncomplete)    { cmd += ' --stop-on-incomplete'; }
+		if(opt.verbose) 				    { cmd += ' --verbose'; }
 		if(opt.loader)              { cmd += ' --loader=' + opt.loader; }
 		if(opt.repeat)              { cmd += ' --repeat=' + opt.repeat; }
 		if(opt.tap)                 { cmd += ' --tap'; }

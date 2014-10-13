@@ -16,36 +16,45 @@ var phpunit = require('gulp-phpunit');
 
 // option 1: default format
 gulp.task('phpunit', function() {
-	gulp.src('./app/tests/*.php').pipe(phpunit());
+	gulp.src('phpunit.xml').pipe(phpunit());
 });
 
 // option 2: with defined bin and options
 gulp.task('phpunit', function() {
 	var options = {debug: false};
-	gulp.src('./app/tests/*.php').pipe(phpunit('./vendor/bin/phpunit',options));
+	gulp.src('phpunit.xml').pipe(phpunit('./vendor/bin/phpunit',options));
 });
 
 
 // Note: Windows OS may require double backslashes if using other than default location (option 1)
 gulp.task('phpunit', function() {
-  gulp.src('./app/tests/*.php').pipe(phpunit('.\\path\\to\\phpunit'));
+  gulp.src('phpunit.xml').pipe(phpunit('.\\path\\to\\phpunit'));
 });
 
 // option 3: supply callback to integrate something like notification (using gulp-notify)
 
 var gulp = require('gulp'),
  notify  = require('gulp-notify'),
- phpunit = require('gulp-phpunit');
+ phpunit = require('gulp-phpunit'),
+ _       = require('lodash');
 
-gulp.task('phpunit', function() {
-	var options = {debug: false, notify: true};
-	gulp.src('app/tests/*.php')
-		.pipe(phpunit('', options))
-		.on('error', notify.onError({
-			title: "Failed Tests!",
-			message: "Error(s) occurred during testing..."
-		}));
-});
+  gulp.task('phpunit', function() {
+    gulp.src('phpunit.xml')
+      .pipe(phpunit('', {notify: true}))
+      .on('error', notify.onError(testNotification('fail', 'phpunit')))
+      .pipe(notify(testNotification('pass', 'phpunit')));
+  });
+
+function testNotification(status, pluginName, override) {
+	var options = {
+		title:   ( status == 'pass' ) ? 'Tests Passed' : 'Tests Failed',
+		message: ( status == 'pass' ) ? '\n\nAll tests have passed!\n\n' : '\n\nOne or more tests failed...\n\n',
+		icon:    __dirname + '/node_modules/gulp-' + pluginName +'/assets/test-' + status + '.png'
+	};
+	options = _.merge(options, override);
+  return options;
+}
+
 
 ```
 
@@ -328,6 +337,12 @@ Prepend PHP's include_path with given path(s).
 
 ## Changelog
 
+- 0.7.0 Added Plugin Resources
+    - Added new icons for pass and fail which can be used by notify plugin (see example below for usage)
+      /assets/test-pass.png
+      /assets/test-fail.png
+    - Added missing 'verbose' flag to PHPUnit command call (option existed but wasn't used).
+   
 - 0.6.3 Updated general options
     - Changed dry run output text color
 
