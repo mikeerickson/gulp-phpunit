@@ -160,11 +160,17 @@ module.exports = function(command, opt) {
 		// after options and switches are added, then add either testClass or testSuite
 
 		// Priority:
+        // - config file path from gulp.src()
 		// - configuration file
 		// - testSuite
 		// - testClass
 
 		var skip;
+
+        if ((file.path) && (! skip) && (!opt.noConfiguration)){
+            cmd += ' -c ' + file.path;
+            skip = true;
+        }
 
 		if ((opt.configurationFile) && (! skip) && (!opt.noConfiguration)){
 			cmd += ' -c ' + opt.configurationFile;
@@ -216,7 +222,10 @@ module.exports = function(command, opt) {
 					cb(null, file);
 				}
 
-			});
+			}).stdout.on('data', function(data) {
+                var str = data.toString();
+                process.stdout.write(str);
+            });
 		}
 
 	});
