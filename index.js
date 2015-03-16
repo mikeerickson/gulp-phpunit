@@ -5,7 +5,9 @@
 var map   = require('map-stream'),
 	gutil   = require('gulp-util'),
 	os      = require('os'),
+  chalk   = require('chalk'),
 	exec    = require('child_process').exec;
+
 
 module.exports = function(command, opt) {
 	// Assign default options if one is not supplied
@@ -165,12 +167,12 @@ module.exports = function(command, opt) {
 		// - testSuite
 		// - testClass
 
-		var skip;
+		var skip = false;
 
-        if ((file.path) && (! skip) && (!opt.noConfiguration)){
-            cmd += ' -c ' + file.path;
-            skip = true;
-        }
+		if ((file.path) && (! skip) && (!opt.noConfiguration)){
+				cmd += ' -c ' + file.path;
+				skip = true;
+		}
 
 		if ((opt.configurationFile) && (! skip) && (!opt.noConfiguration)){
 			cmd += ' -c ' + opt.configurationFile;

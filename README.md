@@ -74,11 +74,6 @@ Type: `Boolean`
 
 Debug mode enabled (enables --debug switch as well)
 
-#### options.dryRun
-Type: `Boolean`
-
-Configures PHPUnit command but only echo call (doesnt actually execute command)
-
 #### options.clear
 Type: `Boolean`
 
@@ -337,6 +332,12 @@ Prepend PHP's include_path with given path(s).
 
 ## Changelog
 
+- 0.8.0 Bug Fixes and New Features
+
+    - Fixed issue with gulp.src not correctly using supplied phpunit.xml file
+    - Added stdout datastream for live logging of phpunit's progress.
+    - Updated internal gulp dependencies (getting ready for gulp 4 support)
+    
 - 0.7.0 Added Plugin Resources
     - Added new icons for pass and fail which can be used by notify plugin (see example below for usage)
       /assets/test-pass.png
