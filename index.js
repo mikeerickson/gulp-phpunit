@@ -1,4 +1,6 @@
 /*jshint node:true */
+/*global require*/
+/*global module*/
 
 'use strict';
 
@@ -169,9 +171,10 @@ module.exports = function(command, opt) {
 
 		var skip = false;
 
+
 		if ((file.path) && (! skip) && (!opt.noConfiguration)){
-				cmd += ' -c ' + file.path;
-				skip = true;
+			cmd += ' -c -bootstrap ' + file.path;
+			skip = true;
 		}
 
 		if ((opt.configurationFile) && (! skip) && (!opt.noConfiguration)){

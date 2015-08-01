@@ -1,6 +1,6 @@
 {
   "name": "gulp-phpunit",
-  "version": "0.8.1",
+  "version": "0.8.3",
   "description": "PHPUnit plugin for Gulp",
   "main": "index.js",
   "dependencies": {
@@ -16,7 +16,7 @@
     "should": "^4.0.4",
     "gulp-mocha": "^0.5.2",
     "gulp-shell": "^0.2.9",
-    "gulp-notify": "^1.4.2"
+    "gulp-notify": "^2.2.0"
   },
   "scripts": {
     "test": "mocha --reporter spec && jshint ./*.js && jshint ./test/*.js"
