@@ -173,7 +173,7 @@ module.exports = function(command, opt) {
 
 
 		if ((file.path) && (! skip) && (!opt.noConfiguration)){
-			cmd += ' -c -bootstrap ' + file.path;
+			cmd += ' -c "' + file.path + '"';
 			skip = true;
 		}
 

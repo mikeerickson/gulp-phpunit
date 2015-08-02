@@ -1,5 +1,7 @@
 ## Changelog
 
+- 0.8.4 Fixed issue when supplying configuration (added enquote)
+
 - 0.8.3 Addressed issue when using with Elixir 3
 
 - 0.8.0 Bug Fixes and New Features
