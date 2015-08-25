@@ -1,8 +1,16 @@
 ## Changelog
 
-- 0.8.4 Fixed issue when supplying configuration (added enquote)
-
-- 0.8.3 Addressed issue when using with Elixir 3
+- 0.9.0 Fixed Issues
+    - Fixed issue when supplying a configuration file (either through configuration option or file parameter)
+    - Added bounds check to assure file supplied as `src` parameter is an actual configuration file
+      - I am only checking to assure it is an .xml file, not a VALID xml file
+    - Tested against Elixir 3.0 for combatability
+    
+    - Closed Issues:
+      [23] (https://github.com/mikeerickson/gulp-phpunit/issues/22) https://github.com/mikeerickson/gulp-phpunit/issues/22
+      [23] (https://github.com/mikeerickson/gulp-phpunit/issues/23) https://github.com/mikeerickson/gulp-phpunit/issues/23
+      [24] (https://github.com/mikeerickson/gulp-phpunit/issues/24) https://github.com/mikeerickson/gulp-phpunit/issues/24
+      [25] (https://github.com/mikeerickson/gulp-phpunit/issues/25) https://github.com/mikeerickson/gulp-phpunit/issues/25
 
 - 0.8.0 Bug Fixes and New Features
 

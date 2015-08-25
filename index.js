@@ -4,12 +4,13 @@
 
 'use strict';
 
-var map   = require('map-stream'),
-	gutil   = require('gulp-util'),
-	os      = require('os'),
-  chalk   = require('chalk'),
-	exec    = require('child_process').exec;
+var map     = require('map-stream');
+var	gutil   = require('gulp-util');
+var	os      = require('os');
+var	chalk   = require('chalk');
+var	exec    = require('child_process').exec;
 
+var _VERSION = '0.9.0';
 
 module.exports = function(command, opt) {
 	// Assign default options if one is not supplied
@@ -164,22 +165,25 @@ module.exports = function(command, opt) {
 		// after options and switches are added, then add either testClass or testSuite
 
 		// Priority:
-        // - config file path from gulp.src()
+		// - config file path from gulp.src()
 		// - configuration file
 		// - testSuite
 		// - testClass
 
 		var skip = false;
 
-
-		if ((file.path) && (! skip) && (!opt.noConfiguration)){
-			cmd += ' -c "' + file.path + '"';
+		if ((opt.configurationFile) && (! skip) && (! opt.noConfiguration)){
+			cmd += ' -c ' + opt.configurationFile;
 			skip = true;
 		}
 
-		if ((opt.configurationFile) && (! skip) && (!opt.noConfiguration)){
-			cmd += ' -c ' + opt.configurationFile;
-			skip = true;
+		if ((file.path) && (! skip) && (!opt.noConfiguration)){
+			var ext = file.path.substr(file.path.lastIndexOf('.')+1);
+			// make sure file supplied is indeed an xml file
+			if ( ext === 'xml') {
+				cmd += ' -c "' + file.path + '"';
+				skip = true;
+			}
 		}
 
 		if ((opt.testSuite) && (! skip)) {
@@ -200,18 +204,19 @@ module.exports = function(command, opt) {
 				gutil.log(chalk.yellow('\n\n       *** Debug Cmd: ' + cmd  + ' ***\n'));
 			}
 		}
-
 		/* -- EXECUTE -- */
+
 		if( ! opt.dryRun ) {
+
 			exec(cmd, function (error, stdout, stderr) {
 				if (!opt.silent && stderr) {
+					console.log('210');
 					gutil.log(stderr);
 				}
 
 				if (!opt.silent) {
 					// Trim trailing cr-lf
 					stdout = stdout.trim();
-
 					if (stdout) {
 						gutil.log(stdout);
 					}
@@ -228,9 +233,9 @@ module.exports = function(command, opt) {
 				}
 
 			}).stdout.on('data', function(data) {
-                var str = data.toString();
-                process.stdout.write(str);
-            });
+					// var str = data.toString();
+					//process.stdout.write(str);
+				});
 		}
 
 	});
