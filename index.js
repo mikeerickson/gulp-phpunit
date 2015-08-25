@@ -10,7 +10,7 @@ var	os      = require('os');
 var	chalk   = require('chalk');
 var	exec    = require('child_process').exec;
 
-var _VERSION = '0.9.0';
+
 
 module.exports = function(command, opt) {
 	// Assign default options if one is not supplied
@@ -233,8 +233,8 @@ module.exports = function(command, opt) {
 				}
 
 			}).stdout.on('data', function(data) {
-					// var str = data.toString();
-					//process.stdout.write(str);
+					 var str = data.toString();
+					cb(null, str);
 				});
 		}
 
