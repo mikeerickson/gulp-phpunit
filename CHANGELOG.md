@@ -1,5 +1,10 @@
 ## Changelog
 
+- 0.10.0 Fixed Issues
+    - Fixed issues when supplying `testsuite` 
+    
+    - Closed Issues
+      [30] (https://github.com/mikeerickson/gulp-phpunit/issues/30) https://github.com/mikeerickson/gulp-phpunit/issues/30
 - 0.9.0 Fixed Issues
     - Fixed issue when supplying a configuration file (either through configuration option or file parameter)
     - Added bounds check to assure file supplied as `src` parameter is an actual configuration file

@@ -187,7 +187,7 @@ module.exports = function(command, opt) {
 		}
 
 		if ((opt.testSuite) && (! skip)) {
-			cmd += ' ' + opt.testSuite;
+			cmd += ' --testsuite' + opt.testSuite;
 			skip = true;
 		}
 
@@ -204,8 +204,8 @@ module.exports = function(command, opt) {
 				gutil.log(chalk.yellow('\n\n       *** Debug Cmd: ' + cmd  + ' ***\n'));
 			}
 		}
-		/* -- EXECUTE -- */
 
+		/* -- EXECUTE -- */
 		if( ! opt.dryRun ) {
 
 			exec(cmd, function (error, stdout, stderr) {
@@ -233,7 +233,7 @@ module.exports = function(command, opt) {
 				}
 
 			}).stdout.on('data', function(data) {
-					 var str = data.toString();
+					var str = data.toString();
 					cb(null, str);
 				});
 		}
