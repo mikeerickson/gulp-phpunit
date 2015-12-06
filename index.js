@@ -13,6 +13,19 @@ var msg      = require('gulp-messenger');
 var _        = require('lodash');
 var notifier = require('node-notifier');
 
+function notifyOptions(status, override) {
+	var options = {
+		taskName: 'Task',
+		title: ( status === 'pass') ? 'Passed' : 'Failed',
+		message: ( status === 'pass' ) ? '<%= taskName %> Completed Successfully' : '<%= taskName %> Failed',
+		icon: './node_modules/gulp-phpunit/assets/test-' + status + '.png'
+	};
+
+	var newOptions = _.merge(options, override);
+	newOptions.message = _.template(newOptions.message)(newOptions);
+	return newOptions;
+
+}
 
 module.exports = function(command, opt) {
 	// Assign default options if one is not supplied
@@ -253,16 +266,3 @@ module.exports = function(command, opt) {
 	});
 };
 
-function notifyOptions(status, override) {
-	var options = {
-		taskName: 'Task',
-		title: ( status === 'pass') ? 'Passed' : 'Failed',
-		message: ( status === 'pass' ) ? '<%= taskName %> Completed Successfully' : '<%= taskName %> Failed',
-		icon: './node_modules/gulp-phpunit/assets/test-' + status + '.png'
-	};
-
-	var newOptions = _.merge(options, override);
-	newOptions.message = _.template(newOptions.message)(newOptions);
-	return newOptions;
-
-}
