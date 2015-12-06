@@ -34,7 +34,6 @@ gulp.task('phpunit', function() {
 // option 3: supply callback to integrate something like notification (using gulp-notify)
 
 var gulp = require('gulp'),
- notify  = require('gulp-notify'),
  phpunit = require('gulp-phpunit'),
  _       = require('lodash');
 
@@ -42,7 +41,6 @@ var gulp = require('gulp'),
     gulp.src('phpunit.xml')
       .pipe(phpunit('', {notify: true}))
       .on('error', notify.onError(testNotification('fail', 'phpunit')))
-      .pipe(notify(testNotification('pass', 'phpunit')));
   });
 
 function testNotification(status, pluginName, override) {
@@ -101,6 +99,8 @@ Define a path to an xml configuration file (supply full path and filename)
 
 #### options.notify
 Type: `Boolean`
+
+Conditionally display notification (both console and growl where applicable)
 
 ## Code Coverage Options:
 
