@@ -1,11 +1,22 @@
 ## Changelog
 
 - 0.11.0 Bug Fixes and Code Refactoring
+    - Fixed all know issues related to using configuration files
+      - If `.xml` file supplied as task source, it will be used as configuration file
+      - If `configurationFile` property supplied in options, it will be used as configuration file
+      - If you enable `noConfigurationFile` property, no configuration file will be used
     - Refactored internal options object
     - Fixed issue when using configuration files ( -c option )
     - Removed a spurious console.log statement
     - Modified `colors` option to match new color options in PHPUnit. You now supply one of three values
       Use colors in output ("never", "auto" or "always")
+    - Fixed issue where output colors were not displayed, regardless of '--colors' attribute
+    - Added new property `statusLine` which will display one of three status lines
+      - green for passing tests
+      - red for failing tests
+      - yellow for tests which have `debug` property enabled (will also display red, green status)
+    - Notifications are on by default (if gulp-notify installed)
+      - You can disable notifications using the `notify` property ( default: true )
       
 - 0.10.0 Fixed Issues
     - Added new property `notify` which will conditionally display notifications (both in buffer and growl where available)

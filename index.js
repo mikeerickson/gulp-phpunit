@@ -12,92 +12,87 @@ var	exec     = require('child_process').exec;
 var msg      = require('gulp-messenger');
 var _        = require('lodash');
 var notifier = require('node-notifier');
-
-function notifyOptions(status, override) {
-	var options = {
-		taskName: 'Task',
-		title: ( status === 'pass') ? 'Passed' : 'Failed',
-		message: ( status === 'pass' ) ? '<%= taskName %> Completed Successfully' : '<%= taskName %> Failed',
-		icon: './node_modules/gulp-phpunit/assets/test-' + status + '.png'
-	};
-
-	var newOptions     = _.merge(options, override);
-	newOptions.message = _.template(newOptions.message)(newOptions);
-	return newOptions;
-
-}
+var utils    = require('./src/utils.js');
 
 module.exports = function(command, opt) {
+
+	var cmd      = '';
+	var launched = false;
+	var skip     = false;
+
 	// Assign default options if one is not supplied
-
 	opt = opt || {};
-	opt = {
 
-		// general settings
-		silent:             opt.silent              || false,
-		debug:              opt.debug               || false,
-		clear:              opt.clear               || false,
-		dryRun:             opt.dryRun              || false,
-		notify:             opt.notify              || false,
+	// merge default options and user supplied options
+	var defaultOptions = {
+
+		// plugin specific options (not associated with phpunit options)
+		silent:             false,
+		debug:              false,
+		clear:              false,
+		dryRun:             false,
+		notify:             true,
+		statusLine:         true,
 
 		// code coverage options
-		coverageClover:     opt.coverageClover      || '',
-		coverageCrap4j:     opt.coverageCrap4j      || '',
-		coverageHtml:       opt.coverageHtml        || '',
-		coveragePhp:        opt.coveragePhp         || '',
-		coverageText:       opt.coverageText        || '',
-		coverageXml:        opt.coverageXml         || '',
+		coverageClover:     '',
+		coverageCrap4j:     '',
+		coverageHtml:       '',
+		coveragePhp:        '',
+		coverageText:       '',
+		coverageXml:        '',
 
 		// logging options
-		logJunit:           opt.logJunit            || '',
-		logTap:             opt.logTap              || '',
-		logJson:            opt.logJson             || '',
-		testdoxHtml:        opt.testdoxHtml         || '',
-		testdoxText:        opt.testdoxText         || '',
+		logJunit:           '',
+		logTap:             '',
+		logJson:            '',
+		testdoxHtml:        '',
+		testdoxText:        '',
 
 		// test selection options
-		filter:             opt.filter              || '',
-		testClass:          opt.testClass           || '',
-		testSuite:          opt.testSuite           || '',
-		group:              opt.group               || '',
-		excludeGroup:       opt.excludeGroup        || '',
-		listGroups:         opt.listGroups          || '',
-		testSuffix:         opt.testSuffix          || '',
+		filter:             '',
+		testClass:          '',
+		testSuite:          '',
+		group:              '',
+		excludeGroup:       '',
+		listGroups:         '',
+		testSuffix:         '',
 
 		// test execution options
-		reportUselessTests: opt.reportUselessTests || false,
-		strictCoverage:     opt.strictCoverage     || false,
-		disallowTestOutput: opt.disallowTestOutput || false,
-		enforceTimeLimit:   opt.enforceTimeLimit   || false,
-		disallowTodoTests:  opt.disallowTestOutput || false,
-		strict:             opt.strict             || false,
+		reportUselessTests: false,
+		strictCoverage:     false,
+		disallowTestOutput: false,
+		enforceTimeLimit:   false,
+		disallowTodoTests:  false,
+		strict:             false,
 
-		processIsolation:   opt.processIsolation   || false,
-		noGlobalsBackup:    opt.noGlobalsBackup    || false,
-		staticBackup:       opt.staticBackup       || false,
+		processIsolation:   false,
+		noGlobalsBackup:    false,
+		staticBackup:       false,
 
-		colors:             opt.colors             || 'always',
-		stderr:             opt.stderr             || false,
-		stopOnError:        opt.stopOnError        || false,
-		stopOnFailure:      opt.stopOnFailure      || false,
-		stopOnRisky:        opt.stopOnRisky        || false,
-		stopOnSkipped:      opt.stopOnSkipped      || false,
-		stopOnIncomplete:   opt.stopOnIncomplete   || false,
-		verbose:            opt.verbose            || false,
+		colors:             'always',
+		stderr:             false,
+		stopOnError:        false,
+		stopOnFailure:      false,
+		stopOnRisky:        false,
+		stopOnSkipped:      false,
+		stopOnIncomplete:   false,
+		verbose:            false,
 
-		loader:             opt.loader             || '',
-		repeat:             opt.repeat             || '',
-		tap:                opt.tap                || false,
-		testdox:            opt.testdox            || false,
-		printer:            opt.printer            || '',
+		loader:             '',
+		repeat:             '',
+		tap:                false,
+		testdox:            false,
+		printer:            '',
 
 		// configuration options
-		bootstrap:          opt.bootstrap          || '',
-		configurationFile:  opt.configurationFile  || '',
-		noConfiguration:    opt.noConfiguration    || false,
-		includePath:        opt.includePath        || ''
+		bootstrap:          '',
+		configurationFile:  '',
+		noConfiguration:    false,
+		includePath:        ''
 
 	};
+	var opt = _.defaults( opt, defaultOptions );
 
 	// If path to phpunit bin not supplied, use default vendor/bin path
 	if (!command) {
@@ -108,10 +103,9 @@ module.exports = function(command, opt) {
 			command = command.replace(/[/]/g, '\\');
 		}
 	} else if (typeof command !== 'string') {
-		throw new gutil.PluginError('gulp-phpunit', 'Invalid PHPUnit Binary');
+		throw new gutil.PluginError('gulp-phpunit', 'Command Not Found: PHPUnit');
 	}
 
-	var launched = false;
 
 	return map( function(file, cb) {
 		// First file triggers the command, so other files does not matter
@@ -119,10 +113,6 @@ module.exports = function(command, opt) {
 			return cb(null, file);
 		}
 		launched = true;
-
-		var cmd = opt.clear ? 'clear && ' + command : command;
-
-		// add remaining switches
 
 		/* code coverage */
 		if(opt.coverageClover)      { cmd += ' --coverage-clover=' + opt.coverageClover; }
@@ -156,7 +146,7 @@ module.exports = function(command, opt) {
 		if(opt.processIsolation)    { cmd += ' --process-isolation'; }
 		if(opt.noGlobalsBackup)     { cmd += ' --no-globals-backup'; }
 		if(opt.staticBackup)        { cmd += ' --static-backup'; }
-		if(opt.colors)              { cmd += ' --colors' + opt.colors; }
+		if(opt.colors)              { cmd += ' --colors=' + opt.colors; }
 		if(opt.stderr)              { cmd += ' --stderr'; }
 		if(opt.stopOnError)         { cmd += ' --stop-on-error'; }
 		if(opt.stopOnFailure)       { cmd += ' --stop-on-failure'; }
@@ -173,11 +163,7 @@ module.exports = function(command, opt) {
 
 		/* configuration options */
 		if(opt.bootstrap)           { cmd += ' --bootstrap=' + opt.bootstrap; }
-		//if (opt.noConfiguration)    { cmd += ' --no-configuration'; }
 		if (opt.includePath)        { cmd += ' --include-path=' + opt.includePath; }
-
-
-		/* ---- FINALLY add testClass, Suite or Configuration -- */
 
 		// after options and switches are added, then add either testClass or testSuite
 
@@ -187,74 +173,82 @@ module.exports = function(command, opt) {
 		// - testSuite
 		// - testClass
 
-		var skip = false;
-
-		if ((opt.configurationFile.length > 0) && (! skip) && (! opt.noConfiguration)){
-			cmd += ' -c ' + opt.configurationFile;
-		}
-
 		if ((file.path) && (! skip) && (!opt.noConfiguration)){
 			var ext = file.path.substr(file.path.lastIndexOf('.')+1);
-			// make sure file supplied is indeed an xml file
 			if ( ext === 'xml') {
-				cmd += ' -c "' + file.path + '"';
-				skip = true;
+				cmd += ' -c "' + file.path + '"'; skip = true;
 			}
 		}
 
+		if ((opt.configurationFile.length > 0) && (! skip) && (! opt.noConfiguration)) {
+			cmd += ' -c ' + opt.configurationFile;
+		}
+
 		if ((opt.testSuite) && (! skip)) {
-			cmd += ' --testsuite ' + opt.testSuite;
-			skip = true;
+			cmd += ' --testsuite ' + opt.testSuite; skip = true;
 		}
 
 		if ((opt.testClass) && (! skip)) {
-			cmd += ' ' + opt.testClass;
-			skip = true;
+			cmd += ' ' + opt.testClass; skip = true;
+		}
+
+		// construct command
+		cmd = command + cmd;
+		if ( opt.clear ) {
+			cmd = 'clear && ' + cmd;
 		}
 
 		// append debug code if switch enabled
 		if ((opt.debug) || (opt.dryRun)) {
 			if(opt.dryRun) {
-				gutil.log(chalk.green('\n\n       *** Dry Run Cmd: ' + cmd  + ' ***\n'));
+				console.log(chalk.green('\n\n       *** Dry Run Cmd: ' + cmd  + ' ***\n'));
 			} else {
-				gutil.log(chalk.yellow('\n\n       *** Debug Cmd: ' + cmd  + ' ***\n'));
+				console.log(chalk.yellow('\n\n       *** Debug Cmd: ' + cmd  + ' ***\n'));
 			}
 		}
 
-		/* -- EXECUTE -- */
 		if( ! opt.dryRun ) {
 
 			exec(cmd, function (error, stdout, stderr) {
 				if (!opt.silent && stderr) {
-					gutil.log(stderr);
+					msg.error(stderr);
 				}
 
 				if (!opt.silent) {
 					// Trim trailing cr-lf
 					stdout = stdout.trim();
 					if (stdout) {
-						gutil.log(stdout);
+						console.log(stdout);
 					}
 				}
 
 				// call user callback if error occurs
 				if (error) {
-					console.log('\n');
-					msg.chalkline.red();
+					if ( opt.statusLine ) {
+						console.log('\n');
+						msg.chalkline.red();
+					}
 					if (opt.debug) {
-						gutil.log(error);
+						msg.error(error);
+						msg.chalkline.yellow();
 					}
 					cb(error, file);
 				} else {
-					console.log('\n');
-					msg.chalkline.green();
+					if ( opt.statusLine ) {
+						console.log('\n');
+						if ( opt.debug ) {
+							msg.chalkline.yellow();
+						} else {
+							msg.chalkline.green();
+						}
+					}
 					cb(null, file);
 				}
 
 
 				// if notify flag enabled, show notification
 				if ( opt.notify ) {
-					var options = notifyOptions(error ? 'fail' : 'pass',{taskName: 'PHPUnit'});
+					var options = utils.notifyOptions(error ? 'fail' : 'pass',{taskName: 'PHPUnit'});
 					notifier.notify(options);
 				}
 

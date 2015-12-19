@@ -1,5 +1,5 @@
 # gulp-phpunit
-> PHPUnit plugin for gulp 3
+PHPUnit plugin for gulp 3
 
 ## Usage
 
@@ -14,44 +14,50 @@ Then, add it to your `gulpfile.js`:
 ```javascript
 var phpunit = require('gulp-phpunit');
 
-// option 1: default format
+// option 1: default format, equivelant to using `phpunit` in command line (no options)
+
+var gulp    = require('gulp');
+var phpunit = require('gulp-phpunit');
+
 gulp.task('phpunit', function() {
-	gulp.src('phpunit.xml').pipe(phpunit());
+	gulp.src('')
+	  .pipe(phpunit());
 });
 
 // option 2: with defined bin and options
+
+var gulp    = require('gulp');
+var phpunit = require('gulp-phpunit');
+
 gulp.task('phpunit', function() {
 	var options = {debug: false};
-	gulp.src('phpunit.xml').pipe(phpunit('./vendor/bin/phpunit',options));
+	gulp.src('phpunit.xml')
+	  .pipe(phpunit('./vendor/bin/phpunit',options));
+});
+
+// option 3: with custom options, using separate configuration file, disabling status line
+
+var gulp    = require('gulp');
+var phpunit = require('gulp-phpunit');
+
+gulp.task('phpunit', function() {
+	var options = {
+	  debug:             true,
+	  statusLine:        false,
+	  configurationFile: './test.xml'
+	};
+	gulp.src('phpunit.xml')
+	  .pipe(phpunit('./vendor/bin/phpunit', options));
 });
 
 
 // Note: Windows OS may require double backslashes if using other than default location (option 1)
 gulp.task('phpunit', function() {
-  gulp.src('phpunit.xml').pipe(phpunit('.\\path\\to\\phpunit'));
+  gulp.src('phpunit.xml')
+    .pipe(phpunit('.\\path\\to\\phpunit'));
 });
 
-// option 3: supply callback to integrate something like notification (using gulp-notify)
 
-var gulp = require('gulp'),
- phpunit = require('gulp-phpunit'),
- _       = require('lodash');
-
-  gulp.task('phpunit', function() {
-    gulp.src('phpunit.xml')
-      .pipe(phpunit('', {notify: true}))
-      .on('error', notify.onError(testNotification('fail', 'phpunit')))
-  });
-
-function testNotification(status, pluginName, override) {
-	var options = {
-		title:   ( status == 'pass' ) ? 'Tests Passed' : 'Tests Failed',
-		message: ( status == 'pass' ) ? '\n\nAll tests have passed!\n\n' : '\n\nOne or more tests failed...\n\n',
-		icon:    __dirname + '/node_modules/gulp-' + pluginName +'/assets/test-' + status + '.png'
-	};
-	options = _.merge(options, override);
-  return options;
-}
 
 
 ```
@@ -65,22 +71,49 @@ function testNotification(status, pluginName, override) {
 Type: `String`
 
 The path to the desired PHPUnit binary
-- If not supplied, the defeault path will be ./vendor/bin/phpunit
+- If not supplied, the default path will be `./vendor/bin/phpunit`
 
 #### options.debug
-Type: `Boolean`
+Type:    `Boolean`
+Default: `false`
 
 Debug mode enabled (enables --debug switch as well)
 
 #### options.clear
-Type: `Boolean`
+Type:    `Boolean`
+Default: `false`
 
 Clear console before executing command
 
 #### options.dryRun
-Type: `Boolean`
+Type:    `Boolean`
+Default: `false`
 
 Executes dry run (doesn't actually execute tests, just echo command that would be executed)
+
+#### options.notify
+Type:    `Boolean`
+Default: `true`
+
+Conditionally display notification (both console and growl where applicable)
+
+#### options.statusLine
+Type:    `Boolean`
+Default: `true`
+
+Displays status lines as follows
+
+  - green for passing tests
+  - red for failing tests
+  - yellow for tests which have `debug` property enabled (will also display red, green status)
+
+
+
+### PHPUnit Options
+
+In addition to plugin options, the following PHPUnit specific options may be configured.  For more information (and default values), visit the help supplied by PHPUnit
+
+$ phpunit --help 
 
 #### options.testClass
 Type: `String`
@@ -97,10 +130,11 @@ Type: `String`
 
 Define a path to an xml configuration file (supply full path and filename)
 
-#### options.notify
-Type: `Boolean`
+  - If `.xml` file supplied as task source, it will be used as configuration file
+  - If `configurationFile` property supplied in options, it will be used as configuration file
+  - If you enable `noConfigurationFile` property, no configuration file will be used
 
-Conditionally display notification (both console and growl where applicable)
+
 
 ## Code Coverage Options:
 
@@ -245,7 +279,8 @@ Type: `Boolean`
 Backup and restore static attributes for each test.
 
 #### options.colors (default: true)
-Type: `String`
+Type:    `String`
+Default: `always`
 
 Use colors in output ("never", "auto" or "always").
 
