@@ -245,9 +245,9 @@ Type: `Boolean`
 Backup and restore static attributes for each test.
 
 #### options.colors (default: true)
-Type: `Boolean`
+Type: `String`
 
-Use colors in output.
+Use colors in output ("never", "auto" or "always").
 
 #### options.stderr (default: false)
 Type: `Boolean`

@@ -1,5 +1,12 @@
 ## Changelog
 
+- 0.11.0 Bug Fixes and Code Refactoring
+    - Refactored internal options object
+    - Fixed issue when using configuration files ( -c option )
+    - Removed a spurious console.log statement
+    - Modified `colors` option to match new color options in PHPUnit. You now supply one of three values
+      Use colors in output ("never", "auto" or "always")
+      
 - 0.10.0 Fixed Issues
     - Added new property `notify` which will conditionally display notifications (both in buffer and growl where available)
       - This property is `false` by default as to not affect existing installations.

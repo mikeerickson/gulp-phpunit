@@ -21,7 +21,7 @@ function notifyOptions(status, override) {
 		icon: './node_modules/gulp-phpunit/assets/test-' + status + '.png'
 	};
 
-	var newOptions = _.merge(options, override);
+	var newOptions     = _.merge(options, override);
 	newOptions.message = _.template(newOptions.message)(newOptions);
 	return newOptions;
 
@@ -29,6 +29,7 @@ function notifyOptions(status, override) {
 
 module.exports = function(command, opt) {
 	// Assign default options if one is not supplied
+
 	opt = opt || {};
 	opt = {
 
@@ -75,7 +76,7 @@ module.exports = function(command, opt) {
 		noGlobalsBackup:    opt.noGlobalsBackup    || false,
 		staticBackup:       opt.staticBackup       || false,
 
-		colors:             opt.colors             || true,
+		colors:             opt.colors             || 'always',
 		stderr:             opt.stderr             || false,
 		stopOnError:        opt.stopOnError        || false,
 		stopOnFailure:      opt.stopOnFailure      || false,
@@ -92,7 +93,7 @@ module.exports = function(command, opt) {
 
 		// configuration options
 		bootstrap:          opt.bootstrap          || '',
-		configurationFile:  opt.configurationFile  || false,
+		configurationFile:  opt.configurationFile  || '',
 		noConfiguration:    opt.noConfiguration    || false,
 		includePath:        opt.includePath        || ''
 
@@ -155,7 +156,7 @@ module.exports = function(command, opt) {
 		if(opt.processIsolation)    { cmd += ' --process-isolation'; }
 		if(opt.noGlobalsBackup)     { cmd += ' --no-globals-backup'; }
 		if(opt.staticBackup)        { cmd += ' --static-backup'; }
-		if(opt.colors)              { cmd += ' --colors'; }
+		if(opt.colors)              { cmd += ' --colors' + opt.colors; }
 		if(opt.stderr)              { cmd += ' --stderr'; }
 		if(opt.stopOnError)         { cmd += ' --stop-on-error'; }
 		if(opt.stopOnFailure)       { cmd += ' --stop-on-failure'; }
@@ -188,9 +189,8 @@ module.exports = function(command, opt) {
 
 		var skip = false;
 
-		if ((opt.configurationFile) && (! skip) && (! opt.noConfiguration)){
+		if ((opt.configurationFile.length > 0) && (! skip) && (! opt.noConfiguration)){
 			cmd += ' -c ' + opt.configurationFile;
-			skip = true;
 		}
 
 		if ((file.path) && (! skip) && (!opt.noConfiguration)){
@@ -226,7 +226,6 @@ module.exports = function(command, opt) {
 
 			exec(cmd, function (error, stdout, stderr) {
 				if (!opt.silent && stderr) {
-					console.log('210');
 					gutil.log(stderr);
 				}
 
@@ -240,12 +239,14 @@ module.exports = function(command, opt) {
 
 				// call user callback if error occurs
 				if (error) {
+					console.log('\n');
 					msg.chalkline.red();
 					if (opt.debug) {
 						gutil.log(error);
 					}
 					cb(error, file);
 				} else {
+					console.log('\n');
 					msg.chalkline.green();
 					cb(null, file);
 				}
