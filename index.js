@@ -92,7 +92,7 @@ module.exports = function(command, opt) {
 		includePath:        ''
 
 	};
-	var opt = _.defaults( opt, defaultOptions );
+	opt = _.defaults( opt, defaultOptions );
 
 	// If path to phpunit bin not supplied, use default vendor/bin path
 	if (!command) {
