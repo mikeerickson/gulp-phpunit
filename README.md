@@ -280,7 +280,7 @@ Backup and restore static attributes for each test.
 
 #### options.colors (default: true)
 Type:    `String`
-Default: `always`
+Default: `always` 
 
 Use colors in output ("never", "auto" or "always").
 
