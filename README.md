@@ -1,7 +1,7 @@
 # gulp-phpunit
 PHPUnit plugin for gulp 3
 
-## Usage
+## Installation
 
 First, install `gulp-phpunit` as a development dependency:
 
@@ -9,7 +9,17 @@ First, install `gulp-phpunit` as a development dependency:
 npm install --save-dev gulp-phpunit
 ```
 
-Then, add it to your `gulpfile.js`:
+#### Laravel Elixir Users
+If you are using with laravel-elixir, as of this update it is forcing use of 0.9.0, but we now have stable branches at 0.10.0 and 0.11.0
+
+```shell
+$ cd node_modules/laravel-elixir
+$ npm install -S gulp-phpunit@latest
+```
+
+## Usage
+
+After you have installed plugin, reference in to your `gulpfile.js`:
 
 ```javascript
 var phpunit = require('gulp-phpunit');
@@ -20,8 +30,8 @@ var gulp    = require('gulp');
 var phpunit = require('gulp-phpunit');
 
 gulp.task('phpunit', function() {
-	gulp.src('')
-	  .pipe(phpunit());
+  gulp.src('')
+    .pipe(phpunit());
 });
 
 // option 2: with defined bin and options
@@ -30,9 +40,9 @@ var gulp    = require('gulp');
 var phpunit = require('gulp-phpunit');
 
 gulp.task('phpunit', function() {
-	var options = {debug: false};
-	gulp.src('phpunit.xml')
-	  .pipe(phpunit('./vendor/bin/phpunit',options));
+  var options = {debug: false};
+  gulp.src('phpunit.xml')
+    .pipe(phpunit('./vendor/bin/phpunit',options));
 });
 
 // option 3: with custom options, using separate configuration file, disabling status line
@@ -41,13 +51,13 @@ var gulp    = require('gulp');
 var phpunit = require('gulp-phpunit');
 
 gulp.task('phpunit', function() {
-	var options = {
-	  debug:             true,
-	  statusLine:        false,
-	  configurationFile: './test.xml'
-	};
-	gulp.src('phpunit.xml')
-	  .pipe(phpunit('./vendor/bin/phpunit', options));
+  var options = {
+    debug:             true,
+    statusLine:        false,
+    configurationFile: './test.xml'
+  };
+  gulp.src('phpunit.xml')
+    .pipe(phpunit('./vendor/bin/phpunit', options));
 });
 
 

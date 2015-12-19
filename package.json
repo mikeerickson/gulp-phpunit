@@ -1,6 +1,6 @@
 {
   "name": "gulp-phpunit",
-  "version": "0.11.1",
+  "version": "0.11.2",
   "description": "PHPUnit plugin for Gulp",
   "main": "index.js",
   "dependencies": {
