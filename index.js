@@ -4,6 +4,8 @@
 
 'use strict';
 
+var VERSION  = require('./package.json').version;
+
 var map      = require('map-stream');
 var	gutil    = require('gulp-util');
 var	os       = require('os');
@@ -200,10 +202,11 @@ module.exports = function(command, opt) {
 
 		// append debug code if switch enabled
 		if ((opt.debug) || (opt.dryRun)) {
+			var vStr = '[Version] ' + VERSION;
 			if(opt.dryRun) {
-				console.log(chalk.green('\n\n       *** Dry Run Cmd: ' + cmd  + ' ***\n'));
+				console.log(chalk.green('\n\n       *** ' + vStr + ' Dry Run Cmd: ' + cmd  + ' ***\n'));
 			} else {
-				console.log(chalk.yellow('\n\n       *** Debug Cmd: ' + cmd  + ' ***\n'));
+				console.log(chalk.yellow('\n\n       *** ' + vStr + ' Debug Cmd: ' + cmd  + ' ***\n'));
 			}
 		}
 

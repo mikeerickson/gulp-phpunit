@@ -17,6 +17,16 @@ $ cd node_modules/laravel-elixir
 $ npm install -S gulp-phpunit@latest
 ```
 
+#### Laravel Elixir Duplicate Notifications
+As of this release, the current version of Elixir 4.0.x, notification messages are used throughout Elixir operation, thus you may want to disable gulp-phpunit default !notifications
+This can be done using the optional `options` passed to mix.phpUnit as follows (for more information about available gulp-phpunit options, please refer to descriptions below)
+
+````
+elixir(function(mix) {
+  mix.phpUnit('',{notify: false}); // this will disable gulp-phpUnit internal notifications
+});
+````
+
 ## Usage
 
 After you have installed plugin, reference in to your `gulpfile.js`:
@@ -33,6 +43,7 @@ gulp.task('phpunit', function() {
   gulp.src('')
     .pipe(phpunit());
 });
+```
 
 // option 2: with defined bin and options
 
