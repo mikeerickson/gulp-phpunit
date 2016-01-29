@@ -1,5 +1,12 @@
 ## Changelog
-  
+- 0.12.1 Added support for disabling auto colors (supports older versions of PHPUnit)
+    - When using older versions of PHPUnit (prior to 4.8.x) the default color option used by gulp-phpunit was causing !errors
+      - You can now turn off auto colors within gulp-phpunit by using the `colors: 'disabled' option 
+
+        ````
+        gulp.phpunit('',{colors: 'disabled'});
+        ````
+
 - 0.12.0 Updated dependencies  
 - 0.11.1 Updated module dependencies
 - 0.11.0 Bug Fixes and Code Refactoring

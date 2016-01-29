@@ -10,7 +10,7 @@ npm install --save-dev gulp-phpunit
 ```
 
 #### Laravel Elixir Users
-If you are using with laravel-elixir, as of this update it is forcing use of 0.9.0, but we now have stable branches at 0.10.0 and 0.11.0
+If you are using gulp-phpunit with laravel-elixir prior to version 4.0, it will install gulp-phpunit 0.9.0. If you wish to upgrade to the lastest version of gulp-phpunit, you can do so by performing the following:
 
 ```shell
 $ cd node_modules/laravel-elixir
@@ -18,12 +18,12 @@ $ npm install -S gulp-phpunit@latest
 ```
 
 #### Laravel Elixir Duplicate Notifications
-As of this release, the current version of Elixir 4.0.x, notification messages are used throughout Elixir operation, thus you may want to disable gulp-phpunit default !notifications
+As of this release, the current version of Elixir 4.0.x, notification messages are used throughout Elixir operation, thus you may want to disable gulp-phpunit default notifications.
 This can be done using the optional `options` passed to mix.phpUnit as follows (for more information about available gulp-phpunit options, please refer to descriptions below)
 
 ````
 elixir(function(mix) {
-  mix.phpUnit('',{notify: false}); // this will disable gulp-phpUnit internal notifications
+  mix.phpUnit('',{notify: false});   // this will disable gulp-phpUnit internal notifications
 });
 ````
 
@@ -299,11 +299,18 @@ Type: `Boolean`
 
 Backup and restore static attributes for each test.
 
-#### options.colors (default: true)
+#### options.colors (default: 'always')
 Type:    `String`
 Default: `always` 
 
 Use colors in output ("never", "auto" or "always").
+
+Note: If using PHPUnit < 4.8.x, you can disable colors using 'disabled' or 'enabled' options
+  
+  ````
+  phpunit('',{colors: 'disabled'});  // disable colors
+  phpunit('',{colors: 'enabled'});   // enable colors
+  ````
 
 #### options.stderr (default: false)
 Type: `Boolean`

@@ -148,7 +148,15 @@ module.exports = function(command, opt) {
 		if(opt.processIsolation)    { cmd += ' --process-isolation'; }
 		if(opt.noGlobalsBackup)     { cmd += ' --no-globals-backup'; }
 		if(opt.staticBackup)        { cmd += ' --static-backup'; }
-		if(opt.colors)              { cmd += ' --colors=' + opt.colors; }
+		if(opt.colors)              {
+			if ( opt.colors !== 'disabled') {
+				if ( opt.colors === 'enabled') {
+					cmd += ' --colors';
+				} else {
+					cmd += ' --colors=' + opt.colors;
+				}
+			}
+		}
 		if(opt.stderr)              { cmd += ' --stderr'; }
 		if(opt.stopOnError)         { cmd += ' --stop-on-error'; }
 		if(opt.stopOnFailure)       { cmd += ' --stop-on-failure'; }
