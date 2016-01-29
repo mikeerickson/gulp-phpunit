@@ -1,5 +1,6 @@
 ## Changelog
   
+- 0.12.0 Updated dependencies  
 - 0.11.1 Updated module dependencies
 - 0.11.0 Bug Fixes and Code Refactoring
     - Fixed all know issues related to using configuration files
@@ -8,7 +9,7 @@
       - If you enable `noConfigurationFile` property, no configuration file will be used
     - Refactored internal options object
     - Fixed issue when using configuration files ( -c option )
-    - Removed a spurious console.log statement
+    - Removed spurious console.log statement
     - Modified `colors` option to match new color options in PHPUnit. You now supply one of three values
       Use colors in output ("never", "auto" or "always")
     - Fixed issue where output colors were not displayed, regardless of '--colors' attribute
