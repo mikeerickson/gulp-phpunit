@@ -1,4 +1,7 @@
 ## Changelog
+- 9.13.0 Added yellow chalkline when there are skipped or incomplete tests
+         [35](https://github.com/mikeerickson/gulp-phpunit/issues/35)
+
 - 0.12.1 Added support for disabling auto colors (supports older versions of PHPUnit)
     - When using older versions of PHPUnit (prior to 4.8.x) the default color option used by gulp-phpunit was causing !errors
       - You can now turn off auto colors within gulp-phpunit by using the `colors: 'disabled' option 

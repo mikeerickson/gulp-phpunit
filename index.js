@@ -247,7 +247,9 @@ module.exports = function(command, opt) {
 				} else {
 					if ( opt.statusLine ) {
 						console.log('\n');
-						if ( opt.debug ) {
+						// if we have skipped tests, we will output a yellow chalkline
+						// otherwise it will be green
+						if (( opt.debug ) || ( stdout.indexOf('Skipped:') > 0 ) || ( stdout.indexOf('Incomplete:') > 0 )){
 							msg.chalkline.yellow();
 						} else {
 							msg.chalkline.green();
