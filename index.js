@@ -4,23 +4,24 @@
 
 'use strict';
 
-var VERSION  = require('./package.json').version;
+var VERSION     = require('./package.json').version;
+var PLUGIN_NAME = require('./package.json').name;
 
-var map      = require('map-stream');
-var	gutil    = require('gulp-util');
-var	os       = require('os');
-var	chalk    = require('chalk');
-var	exec     = require('child_process').exec;
-var msg      = require('gulp-messenger');
-var _        = require('lodash');
+var _        = require('lodash');
+var map      = require('map-stream');
+var gutil    = require('gulp-util');
+var os       = require('os');
+var chalk    = require('chalk');
+var msg      = require('gulp-messenger');
 var notifier = require('node-notifier');
-var utils    = require('./src/utils.js');
+var utils    = require('./src/utils.js');
+var shell    = require('shelljs');
 
 module.exports = function(command, opt) {
 
-	var cmd      = '';
+	var cmd      = '';
 	var launched = false;
-	var skip     = false;
+	var skip     = false;
 
 	// Assign default options if one is not supplied
 	opt = opt || {};
@@ -29,69 +30,69 @@ module.exports = function(command, opt) {
 	var defaultOptions = {
 
 		// plugin specific options (not associated with phpunit options)
-		silent:             false,
-		debug:              false,
-		clear:              false,
-		dryRun:             false,
-		notify:             true,
-		statusLine:         true,
+		silent:             false,
+		debug:              false,
+		clear:              false,
+		dryRun:             false,
+		notify:             true,
+		statusLine:         true,
 
 		// code coverage options
-		coverageClover:     '',
-		coverageCrap4j:     '',
-		coverageHtml:       '',
-		coveragePhp:        '',
-		coverageText:       '',
-		coverageXml:        '',
+		coverageClover:     '',
+		coverageCrap4j:     '',
+		coverageHtml:       '',
+		coveragePhp:        '',
+		coverageText:       '',
+		coverageXml:        '',
 
 		// logging options
-		logJunit:           '',
-		logTap:             '',
-		logJson:            '',
-		testdoxHtml:        '',
-		testdoxText:        '',
+		logJunit:           '',
+		logTap:             '',
+		logJson:            '',
+		testdoxHtml:        '',
+		testdoxText:        '',
 
 		// test selection options
-		filter:             '',
-		testClass:          '',
-		testSuite:          '',
-		group:              '',
-		excludeGroup:       '',
-		listGroups:         '',
-		testSuffix:         '',
+		filter:             '',
+		testClass:          '',
+		testSuite:          '',
+		group:              '',
+		excludeGroup:       '',
+		listGroups:         '',
+		testSuffix:         '',
 
 		// test execution options
 		reportUselessTests: false,
-		strictCoverage:     false,
+		strictCoverage:     false,
 		disallowTestOutput: false,
-		enforceTimeLimit:   false,
-		disallowTodoTests:  false,
-		strict:             false,
+		enforceTimeLimit:   false,
+		disallowTodoTests:  false,
+		strict:             false,
 
-		processIsolation:   false,
-		noGlobalsBackup:    false,
-		staticBackup:       false,
+		processIsolation:   false,
+		noGlobalsBackup:    false,
+		staticBackup:       false,
 
-		colors:             'always',
-		stderr:             false,
-		stopOnError:        false,
-		stopOnFailure:      false,
-		stopOnRisky:        false,
-		stopOnSkipped:      false,
-		stopOnIncomplete:   false,
-		verbose:            false,
+		colors:             'always',
+		stderr:             false,
+		stopOnError:        false,
+		stopOnFailure:      false,
+		stopOnRisky:        false,
+		stopOnSkipped:      false,
+		stopOnIncomplete:   false,
+		verbose:            false,
 
-		loader:             '',
-		repeat:             '',
-		tap:                false,
-		testdox:            false,
-		printer:            '',
+		loader:             '',
+		repeat:             '',
+		tap:                false,
+		testdox:            false,
+		printer:            '',
 
 		// configuration options
-		bootstrap:          '',
-		configurationFile:  '',
-		noConfiguration:    false,
-		includePath:        ''
+		bootstrap:          '',
+		configurationFile:  '',
+		noConfiguration:    false,
+		includePath:        ''
 
 	};
 	opt = _.defaults( opt, defaultOptions );
@@ -105,7 +106,7 @@ module.exports = function(command, opt) {
 			command = command.replace(/[/]/g, '\\');
 		}
 	} else if (typeof command !== 'string') {
-		throw new gutil.PluginError('gulp-phpunit', 'Command Not Found: PHPUnit');
+		throw new gutil.PluginError(PLUGIN_NAME, 'Command Not Found: PHPUnit');
 	}
 
 
@@ -117,38 +118,38 @@ module.exports = function(command, opt) {
 		launched = true;
 
 		/* code coverage */
-		if(opt.coverageClover)      { cmd += ' --coverage-clover=' + opt.coverageClover; }
-		if(opt.coverageCrap4j)      { cmd += ' --coverage-crap4j=' + opt.coverageCrap4j; }
-		if(opt.coverageHtml)        { cmd += ' --coverage-html=' + opt.coverageHtml; }
-		if(opt.coveragePhp)         { cmd += ' --coverage-php=' + opt.coveragePhp; }
-		if(opt.coverageText)        { cmd += ' --coverage-text=' + opt.coverageText; }
-		if(opt.coverageXml)         { cmd += ' --coverage-xml=' + opt.coverageXml; }
+		if(opt.coverageClover)      { cmd += ' --coverage-clover=' + opt.coverageClover; }
+		if(opt.coverageCrap4j)      { cmd += ' --coverage-crap4j=' + opt.coverageCrap4j; }
+		if(opt.coverageHtml)        { cmd += ' --coverage-html=' + opt.coverageHtml; }
+		if(opt.coveragePhp)         { cmd += ' --coverage-php=' + opt.coveragePhp; }
+		if(opt.coverageText)        { cmd += ' --coverage-text=' + opt.coverageText; }
+		if(opt.coverageXml)         { cmd += ' --coverage-xml=' + opt.coverageXml; }
 
 		/* logging options */
-		if(opt.logJunit)            { cmd += ' --log-junit=' + opt.logJunit; }
-		if(opt.logTap)              { cmd += ' --log-tap=' + opt.logTap; }
-		if(opt.logJson)             { cmd += ' --log-json=' + opt.logJson; }
-		if(opt.testdoxHtml)         { cmd += ' --testdox-html=' + opt.testdoxHtml; }
-		if(opt.testdoxText)         { cmd += ' --testdox-text=' + opt.testdoxText; }
+		if(opt.logJunit)            { cmd += ' --log-junit=' + opt.logJunit; }
+		if(opt.logTap)              { cmd += ' --log-tap=' + opt.logTap; }
+		if(opt.logJson)             { cmd += ' --log-json=' + opt.logJson; }
+		if(opt.testdoxHtml)         { cmd += ' --testdox-html=' + opt.testdoxHtml; }
+		if(opt.testdoxText)         { cmd += ' --testdox-text=' + opt.testdoxText; }
 
 		/* test selection */
-		if(opt.filter)              { cmd += ' --filter=' + opt.filter; }
-		if(opt.group)               { cmd += ' --group=' + opt.group; }
-		if(opt.excludeGroup)        { cmd += ' --exclude-group=' + opt.excludeGroup; }
-		if(opt.listGroups)          { cmd += ' --list-groups=' + opt.listGroups; }
-		if(opt.testSuffix)          { cmd += ' --test-suffix=' + opt.testSuffix; }
+		if(opt.filter)              { cmd += ' --filter=' + opt.filter; }
+		if(opt.group)               { cmd += ' --group=' + opt.group; }
+		if(opt.excludeGroup)        { cmd += ' --exclude-group=' + opt.excludeGroup; }
+		if(opt.listGroups)          { cmd += ' --list-groups=' + opt.listGroups; }
+		if(opt.testSuffix)          { cmd += ' --test-suffix=' + opt.testSuffix; }
 
 		/* test execution options */
-		if(opt.reportUselessTests)  { cmd += ' --report-useless-tests'; }
-		if(opt.strictCoverage)      { cmd += ' --strict-coverage'; }
-		if(opt.disallowTestOutput)  { cmd += ' --disallow-test-output'; }
-		if(opt.enforceTimeLimit)    { cmd += ' --enforce-time-limit'; }
-		if(opt.disallowTodoTests)   { cmd += ' --disallow-todo-tests'; }
-		if(opt.strict)              { cmd += ' --strict'; }
-		if(opt.processIsolation)    { cmd += ' --process-isolation'; }
-		if(opt.noGlobalsBackup)     { cmd += ' --no-globals-backup'; }
-		if(opt.staticBackup)        { cmd += ' --static-backup'; }
-		if(opt.colors)              {
+		if(opt.reportUselessTests)  { cmd += ' --report-useless-tests'; }
+		if(opt.strictCoverage)      { cmd += ' --strict-coverage'; }
+		if(opt.disallowTestOutput)  { cmd += ' --disallow-test-output'; }
+		if(opt.enforceTimeLimit)    { cmd += ' --enforce-time-limit'; }
+		if(opt.disallowTodoTests)   { cmd += ' --disallow-todo-tests'; }
+		if(opt.strict)              { cmd += ' --strict'; }
+		if(opt.processIsolation)    { cmd += ' --process-isolation'; }
+		if(opt.noGlobalsBackup)     { cmd += ' --no-globals-backup'; }
+		if(opt.staticBackup)        { cmd += ' --static-backup'; }
+		if(opt.colors)              {
 			if ( opt.colors !== 'disabled') {
 				if ( opt.colors === 'enabled') {
 					cmd += ' --colors';
@@ -157,23 +158,23 @@ module.exports = function(command, opt) {
 				}
 			}
 		}
-		if(opt.stderr)              { cmd += ' --stderr'; }
-		if(opt.stopOnError)         { cmd += ' --stop-on-error'; }
-		if(opt.stopOnFailure)       { cmd += ' --stop-on-failure'; }
-		if(opt.stopOnRisky)         { cmd += ' --stop-on-risky'; }
-		if(opt.stopOnSkipped)       { cmd += ' --stop-on-skipped'; }
-		if(opt.stopOnIncomplete)    { cmd += ' --stop-on-incomplete'; }
-		if(opt.verbose) 				    { cmd += ' --verbose'; }
-		if(opt.loader)              { cmd += ' --loader=' + opt.loader; }
-		if(opt.repeat)              { cmd += ' --repeat=' + opt.repeat; }
-		if(opt.tap)                 { cmd += ' --tap'; }
-		if(opt.testdox)             { cmd += ' --testdox'; }
-		if(opt.printer)             { cmd += ' --printer=' + opt.printer; }
-		if (opt.debug)              { cmd += ' --debug'; }
+		if(opt.stderr)              { cmd += ' --stderr'; }
+		if(opt.stopOnError)         { cmd += ' --stop-on-error'; }
+		if(opt.stopOnFailure)       { cmd += ' --stop-on-failure'; }
+		if(opt.stopOnRisky)         { cmd += ' --stop-on-risky'; }
+		if(opt.stopOnSkipped)       { cmd += ' --stop-on-skipped'; }
+		if(opt.stopOnIncomplete)    { cmd += ' --stop-on-incomplete'; }
+		if(opt.verbose)                                                    { cmd += ' --verbose'; }
+		if(opt.loader)              { cmd += ' --loader=' + opt.loader; }
+		if(opt.repeat)              { cmd += ' --repeat=' + opt.repeat; }
+		if(opt.tap)                 { cmd += ' --tap'; }
+		if(opt.testdox)             { cmd += ' --testdox'; }
+		if(opt.printer)             { cmd += ' --printer=' + opt.printer; }
+		if (opt.debug)              { cmd += ' --debug'; }
 
 		/* configuration options */
-		if(opt.bootstrap)           { cmd += ' --bootstrap=' + opt.bootstrap; }
-		if (opt.includePath)        { cmd += ' --include-path=' + opt.includePath; }
+		if(opt.bootstrap)           { cmd += ' --bootstrap=' + opt.bootstrap; }
+		if (opt.includePath)        { cmd += ' --include-path=' + opt.includePath; }
 
 		// after options and switches are added, then add either testClass or testSuite
 
@@ -212,26 +213,26 @@ module.exports = function(command, opt) {
 		if ((opt.debug) || (opt.dryRun)) {
 			var vStr = '[Version] ' + VERSION;
 			if(opt.dryRun) {
-				console.log(chalk.green('\n\n       *** ' + vStr + ' Dry Run Cmd: ' + cmd  + ' ***\n'));
+				console.log(chalk.green('\n\n       *** ' + vStr + ' Dry Run Cmd: ' + cmd  + ' ***\n'));
 			} else {
-				console.log(chalk.yellow('\n\n       *** ' + vStr + ' Debug Cmd: ' + cmd  + ' ***\n'));
+				console.log(chalk.yellow('\n\n       *** ' + vStr + ' Debug Cmd: ' + cmd  + ' ***\n'));
 			}
 		}
 
 		if( ! opt.dryRun ) {
 
-			exec(cmd, function (error, stdout, stderr) {
+			shell.exec(cmd,{async: true, silent: opt.silent}, function (error, stdout, stderr) {
 				if (!opt.silent && stderr) {
 					msg.error(stderr);
 				}
 
-				if (!opt.silent) {
-					// Trim trailing cr-lf
-					stdout = stdout.trim();
-					if (stdout) {
-						console.log(stdout);
-					}
-				}
+				// if (!opt.silent) {
+				//            // Trim trailing cr-lf
+				//            stdout = stdout.trim();
+				//            if (stdout) {
+				//                           // console.log(stdout);
+				//            }
+				// }
 
 				// call user callback if error occurs
 				if (error) {
@@ -273,4 +274,3 @@ module.exports = function(command, opt) {
 
 	});
 };
-

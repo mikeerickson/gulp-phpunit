@@ -1,5 +1,9 @@
 ## Changelog
-- 9.13.0 Added yellow chalkline when there are skipped or incomplete tests
+  
+- 0.14.0 Refactored to perform testing ansyncronously so output is displayed immediately (shows progress)
+         [40](https://github.com/mikeerickson/gulp-phpunit/issues/40)
+
+- 0.13.0 Added yellow chalkline when there are skipped or incomplete tests
          [35](https://github.com/mikeerickson/gulp-phpunit/issues/35)
 
 - 0.12.1 Added support for disabling auto colors (supports older versions of PHPUnit)
