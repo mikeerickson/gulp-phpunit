@@ -33,9 +33,11 @@ After you have installed plugin, reference in to your `gulpfile.js`:
 
 ```javascript
 var phpunit = require('gulp-phpunit');
+```
 
-// option 1: default format, equivelant to using `phpunit` in command line (no options)
+**Option 1:** Default format, equivelant to using `phpunit` in command line (no options).
 
+```javascript
 var gulp    = require('gulp');
 var phpunit = require('gulp-phpunit');
 
@@ -45,8 +47,9 @@ gulp.task('phpunit', function() {
 });
 ```
 
-// option 2: with defined bin and options
+**Option 2:** With defined bin and options.
 
+```javascript
 var gulp    = require('gulp');
 var phpunit = require('gulp-phpunit');
 
@@ -55,9 +58,11 @@ gulp.task('phpunit', function() {
   gulp.src('phpunit.xml')
     .pipe(phpunit('./vendor/bin/phpunit',options));
 });
+```
 
-// option 3: with custom options, using separate configuration file, disabling status line
+**Option 3:** With custom options, using separate configuration file, disabling status line
 
+```javascript
 var gulp    = require('gulp');
 var phpunit = require('gulp-phpunit');
 
@@ -70,17 +75,17 @@ gulp.task('phpunit', function() {
   gulp.src('phpunit.xml')
     .pipe(phpunit('./vendor/bin/phpunit', options));
 });
+```
 
+**Note:** Windows OS may require double backslashes if using other than default location 
 
-// Note: Windows OS may require double backslashes if using other than default location (option 1)
+```javascript
+var phpunit = require('gulp-phpunit');
+
 gulp.task('phpunit', function() {
   gulp.src('phpunit.xml')
     .pipe(phpunit('.\\path\\to\\phpunit'));
 });
-
-
-
-
 ```
 
 ## API
