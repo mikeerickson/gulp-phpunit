@@ -32,7 +32,10 @@
     "gulpplugin",
     "phpunit"
   ],
-  "author": "Mike Erickson <codedungeon@gmail.com>",
+  "author": {
+    "name": "codedungeon",
+    "email": "codedungeon@gmail.com"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mikeerickson/gulp-phpunit/issues"
