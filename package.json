@@ -1,8 +1,9 @@
 {
   "name": "gulp-phpunit",
-  "version": "0.15.1",
+  "version": "0.15.2",
   "description": "PHPUnit plugin for Gulp",
   "main": "index.js",
+  "reveal": true,
   "dependencies": {
     "chalk": "^1.0.0",
     "gulp-messenger": "0.12.0",
