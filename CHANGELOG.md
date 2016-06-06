@@ -1,5 +1,8 @@
 ## Changelog
 
+- 0.15.1 Fixed module dependecny issue
+         [42](https://github.com/mikeerickson/gulp-phpunit/issues/42)
+
 - 0.15.0 Updated to provide `reveal` support accessible `npmaddict.com`
 
 - 0.14.0 Refactored to perform testing ansyncronously so output is displayed immediately (shows progress)
