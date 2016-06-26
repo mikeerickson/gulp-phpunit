@@ -1,31 +1,31 @@
 # gulp-phpunit
-PHPUnit plugin for gulp 3
+Gulp plugin to control phpUnit 
 
 ## Installation
 
 First, install `gulp-phpunit` as a development dependency:
 
-```shell
-npm install --save-dev gulp-phpunit
+```
+npm i -D gulp-phpunit
 ```
 
 #### Laravel Elixir Users
 If you are using gulp-phpunit with laravel-elixir prior to version 4.0, it will install gulp-phpunit 0.9.0. If you wish to upgrade to the lastest version of gulp-phpunit, you can do so by performing the following:
 
-```shell
+```
 $ cd node_modules/laravel-elixir
-$ npm install -S gulp-phpunit@latest
+$ npm install -D gulp-phpunit@latest
 ```
 
 #### Laravel Elixir Duplicate Notifications
 As of this release, the current version of Elixir 4.0.x, notification messages are used throughout Elixir operation, thus you may want to disable gulp-phpunit default notifications.
 This can be done using the optional `options` passed to mix.phpUnit as follows (for more information about available gulp-phpunit options, please refer to descriptions below)
 
-````
-elixir(function(mix) {
-  mix.phpUnit('',{notify: false});   // this will disable gulp-phpUnit internal notifications
-});
-````
+```
+    elixir(function(mix) {
+      mix.phpUnit('',{notify: false});   // this will disable gulp-phpUnit internal notifications
+    });
+```
 
 ## Usage
 

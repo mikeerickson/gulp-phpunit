@@ -1,11 +1,21 @@
 ## Changelog
 
+- 0.16.0 Changes
+         Added --no-coverage option
+         [43](https://github.com/mikeerickson/gulp-phpunit/issues/43)
+         ```
+         var opts = { noCoverage: true } // default false
+         gulp.src('phpunit.xml')
+           .pipe(phpunit('./vendor/bin/phpunit',opts));
+         });
+         ```
+         
 - 0.15.2 Updated to provide `reveal` support accessible `npmaddict.com`
 
-- 0.15.1 Fixed module dependecny issue
+- 0.15.1 Fixed module dependency issue
          [42](https://github.com/mikeerickson/gulp-phpunit/issues/42)
 
-- 0.14.0 Refactored to perform testing ansyncronously so output is displayed immediately (shows progress)
+- 0.14.0 Refactored to perform testing asynchronously so output is displayed immediately (shows progress)
          [40](https://github.com/mikeerickson/gulp-phpunit/issues/40)
 
 - 0.13.0 Added yellow chalkline when there are skipped or incomplete tests
@@ -15,9 +25,9 @@
     - When using older versions of PHPUnit (prior to 4.8.x) the default color option used by gulp-phpunit was causing !errors
       - You can now turn off auto colors within gulp-phpunit by using the `colors: 'disabled' option 
 
-        ````
+        ```
         gulp.phpunit('',{colors: 'disabled'});
-        ````
+        ```
 
 - 0.12.0 Updated dependencies  
 - 0.11.1 Updated module dependencies
@@ -55,7 +65,7 @@
     - Fixed issue when supplying a configuration file (either through configuration option or file parameter)
     - Added bounds check to assure file supplied as `src` parameter is an actual configuration file
       - I am only checking to assure it is an .xml file, not a VALID xml file
-    - Tested against Elixir 3.0 for combatability
+    - Tested against Elixir 3.0 for compatibility
     
     - Closed Issues:
       [23] (https://github.com/mikeerickson/gulp-phpunit/issues/22) https://github.com/mikeerickson/gulp-phpunit/issues/22
@@ -81,7 +91,7 @@
 - 0.6.2 Updated general options
     - Added dryRun option (echo constructed PHPUnit command) sets opt.debug true
 
-- 0.6.1 Updated README to include all udpated options
+- 0.6.1 Updated README to include all updated options
 
 - 0.6.0 Updated to support PHPUnit 4.x and new options
 
@@ -128,6 +138,7 @@
       - includePath
       - noColor
       - noConfig
+      - noCoverage (added 0.16.0)
 
 - 0.5.3 Updated dev dependencies to use latest builds
 

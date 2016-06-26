@@ -92,6 +92,7 @@ module.exports = function(command, opt) {
 		bootstrap:          '',
 		configurationFile:  '',
 		noConfiguration:    false,
+		noCoverage:         false,
 		includePath:        ''
 
 	};
@@ -164,17 +165,17 @@ module.exports = function(command, opt) {
 		if(opt.stopOnRisky)         { cmd += ' --stop-on-risky'; }
 		if(opt.stopOnSkipped)       { cmd += ' --stop-on-skipped'; }
 		if(opt.stopOnIncomplete)    { cmd += ' --stop-on-incomplete'; }
-		if(opt.verbose)                                                    { cmd += ' --verbose'; }
+		if(opt.verbose)             { cmd += ' --verbose'; }
 		if(opt.loader)              { cmd += ' --loader=' + opt.loader; }
 		if(opt.repeat)              { cmd += ' --repeat=' + opt.repeat; }
 		if(opt.tap)                 { cmd += ' --tap'; }
 		if(opt.testdox)             { cmd += ' --testdox'; }
 		if(opt.printer)             { cmd += ' --printer=' + opt.printer; }
-		if (opt.debug)              { cmd += ' --debug'; }
+		if(opt.debug)               { cmd += ' --debug'; }
 
 		/* configuration options */
 		if(opt.bootstrap)           { cmd += ' --bootstrap=' + opt.bootstrap; }
-		if (opt.includePath)        { cmd += ' --include-path=' + opt.includePath; }
+		if(opt.includePath)        { cmd += ' --include-path=' + opt.includePath; }
 
 		// after options and switches are added, then add either testClass or testSuite
 
@@ -193,6 +194,10 @@ module.exports = function(command, opt) {
 
 		if ((opt.configurationFile.length > 0) && (! skip) && (! opt.noConfiguration)) {
 			cmd += ' -c ' + opt.configurationFile;
+		}
+
+		if ((! skip) && (! opt.noCoverage)) {
+			cmd += ' --no-coverage ';
 		}
 
 		if ((opt.testSuite) && (! skip)) {
