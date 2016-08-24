@@ -17,7 +17,7 @@ var notifier = require('node-notifier');
 var utils    = require('./src/utils.js');
 var shell    = require('shelljs');
 
-module.exports = function(command, opt) {
+module.exports = function(command, opt, callback) {
 
 	var cmd      = '';
 	var launched = false;
@@ -249,6 +249,9 @@ module.exports = function(command, opt) {
 						msg.error(error);
 						msg.chalkline.yellow();
 					}
+					if(_.isFunction(callback)) {
+						callback(new gutil.PluginError('gulp-phpunit', stderr || stdout));
+					}
 					cb(error, file);
 				} else {
 					if ( opt.statusLine ) {
@@ -260,6 +263,9 @@ module.exports = function(command, opt) {
 						} else {
 							msg.chalkline.green();
 						}
+					}
+					if(_.isFunction(callback)) {
+						callback(null, stderr || stdout);
 					}
 					cb(null, file);
 				}

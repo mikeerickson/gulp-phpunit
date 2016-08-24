@@ -1,5 +1,17 @@
 ## Changelog
 
+- 0.17.0
+    - Added optional callback method which will be executed when testing is complete.
+    
+      ```
+      gulp.task('phpunit', function() {
+        gulp.src('')
+          .pipe(phpunit('phpunit.xml', opts, function(err, success){
+            if(err) { throw err }
+            console.log(success)
+          });
+      });
+      ```
 - 0.16.0 Changes
          Added --no-coverage option
          [43](https://github.com/mikeerickson/gulp-phpunit/issues/43)
