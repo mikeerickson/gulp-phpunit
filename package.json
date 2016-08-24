@@ -1,26 +1,26 @@
 {
   "name": "gulp-phpunit",
-  "version": "0.17.0",
+  "version": "0.17.1",
   "description": "PHPUnit plugin for Gulp",
   "main": "index.js",
   "reveal": true,
   "dependencies": {
     "chalk": "^1.0.0",
-    "gulp-messenger": "0.12.0",
+    "gulp-messenger": "^0.19.0",
     "gulp-notify": "^2.2.0",
     "gulp-util": "3.0.7",
-    "lodash": "4.6.1",
+    "lodash": "^4.15.0",
     "map-stream": "~0.0.4",
-    "node-notifier": "4.3.1",
-    "shelljs": "0.6.0"
+    "node-notifier": "^4.6.1",
+    "shelljs": "^0.7.3"
   },
   "devDependencies": {
     "gulp": "3.9.1",
-    "gulp-mocha": "^0.5.2",
+    "gulp-mocha": "^3.0.1",
     "gulp-shell": "0.5.2",
     "jshint": "^2.5.3",
-    "mocha": "1.21.5",
-    "should": "^4.0.4"
+    "mocha": "^3.0.2",
+    "should": "^11.1.0"
   },
   "scripts": {
     "test": "mocha --reporter spec && jshint ./*.js && jshint ./test/*.js"
