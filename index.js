@@ -270,8 +270,10 @@ module.exports = function(command, opt, callback) {
 				}
 
 			}).stdout.on('data', function(data) {
-				var str = data.toString();
-				process.stdout.write(str);
+				if (!opt.silent) {
+					var str = data.toString();
+					process.stdout.write(str);
+				}
 			});
 		}
 
