@@ -231,14 +231,6 @@ module.exports = function(command, opt, callback) {
 					msg.error(stderr);
 				}
 
-				// if (!opt.silent) {
-				//            // Trim trailing cr-lf
-				//            stdout = stdout.trim();
-				//            if (stdout) {
-				//                           // console.log(stdout);
-				//            }
-				// }
-
 				// call user callback if error occurs
 				if (error) {
 					if ( opt.statusLine ) {
@@ -278,8 +270,10 @@ module.exports = function(command, opt, callback) {
 				}
 
 			}).stdout.on('data', function(data) {
-				var str = data.toString();
-				cb(null, str);
+				if (!opt.silent) {
+					var str = data.toString();
+					process.stdout.write(str);
+				}
 			});
 		}
 
