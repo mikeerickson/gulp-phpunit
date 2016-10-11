@@ -282,7 +282,7 @@ module.exports = function (command, opt, callback) {
 				if ((!opt.silent) && (opt.showData)) {
 					var str = data.toString();
 					console.log(data);
-					//process.stdout.write(str);
+					process.stdout.write(str);
 				}
 			});
 		}
