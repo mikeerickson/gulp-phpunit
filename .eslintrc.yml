@@ -1,0 +1,94 @@
+# eslint@~2.2.0
+# @see http://eslint.org/docs/rules
+# When adding rules, be sure to sort them, e.g. vim :'<,'>sort
+root: true
+parser: esprima
+parserOptions:
+  sourceType: module
+rules:
+  ##### Possible Errors #####
+  no-console: 0 # 1
+  no-debugger: 1
+  no-dupe-args: 1
+  no-dupe-keys: 1
+  no-duplicate-case: 1
+  no-empty-character-class: 1
+  no-ex-assign: 1
+  no-extra-boolean-cast: 1
+  no-extra-semi: 1
+  no-func-assign: 1
+  no-inner-declarations: 1
+  no-invalid-regexp: 2
+  no-irregular-whitespace: 0 # 1
+  no-negated-in-lhs: 2
+  no-obj-calls: 2
+  no-regex-spaces: 1
+  no-sparse-arrays: 1
+  no-unexpected-multiline: 1
+  no-unreachable: 1
+  use-isnan: 2
+  valid-typeof: 2
+
+  ##### Best Practices #####
+  dot-notation: 1
+  eqeqeq: 1 # fixable
+  no-alert: 1
+  no-caller: 2
+  no-eval: 2
+  no-extend-native: 1
+  no-extra-bind: 1
+  no-floating-decimal: 1
+  no-iterator: 2
+  no-labels: 2
+  no-loop-func: 1
+  # no-multi-spaces: 1 # fixable
+  no-multi-spaces: 0 # fixable
+  no-native-reassign: 2
+  no-new-func: 1
+  no-octal: 2
+  no-proto: 2
+  no-redeclare: 1
+  no-sequences: 1
+  # no-unused-expressions: 1
+  no-unused-expressions: 0
+  no-with: 1
+
+  ##### Variables #####
+  no-delete-var: 1
+  no-shadow-restricted-names: 1
+  no-undef-init: 2
+  # no-undef: 1
+  no-undef: 0
+  # no-unused-vars: [2, {args: 'all', argsIgnorePattern: '^_'}]
+  no-unused-vars: 0
+  no-use-before-define: [2, 'nofunc']
+
+  ##### Stylistic Issues #####
+  array-bracket-spacing: 0 # 1 # fixable
+  block-spacing: 1 # fixable
+  brace-style: [1, 'stroustrup', {allowSingleLine: true}]
+  func-style: [1, 'declaration', {allowArrowFunctions: true}]
+  # indent: [1, 'tab', {SwitchCase: 0}] # fixable
+  indent: 0 # fixable
+  key-spacing: 0 # 1
+  keyword-spacing: 0 # 1 # fixable
+  new-parens: 1
+  no-mixed-spaces-and-tabs: 2
+  no-spaced-func: 1 # fixable
+  no-unneeded-ternary: [2, {defaultAssignment: false}]
+  object-curly-spacing: 1 # fixable
+  one-var-declaration-per-line: 1
+  # operator-linebreak: [1, 'before', {overrides: {'=': 'after'}}]
+  operator-linebreak: 0
+  quotes: [1, 'single', 'avoid-escape'] # fixable
+  # semi: [1, 'always'] # fixable
+  semi: 0 # fixable
+  space-before-function-paren: [1, {anonymous: 'always', named: 'never'}] # fixable
+  space-in-parens: 0 # 1
+  space-infix-ops: 2 # fixable
+  space-unary-ops: 0 # 1 # fixable
+
+  #### ECMAScript 6 ####
+  no-class-assign: 2
+  no-const-assign: 2
+  no-dupe-class-members: 1

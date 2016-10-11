@@ -5,9 +5,9 @@ var gulpunit = require('../'),
 
 require('mocha');
 
-describe('gulp-phpunit', function() {
+describe('gulp-phpunit', function () {
 
-	it('should not throw error if no parameters passed', function(done) {
+	it('should not throw error if no parameters passed', function (done) {
 
 		// Arrange
 		var caughtErr;
@@ -15,7 +15,8 @@ describe('gulp-phpunit', function() {
 		// Act
 		try {
 			gulpunit();
-		} catch (err) {
+		}
+    catch (err) {
 			caughtErr = err;
 		}
 
@@ -27,7 +28,7 @@ describe('gulp-phpunit', function() {
 
 	});
 
-	it('should throw error if object passed as first parameter', function(done) {
+	it('should throw error if object passed as first parameter', function (done) {
 
 		// arrange
 		var caughtErr;
@@ -35,7 +36,8 @@ describe('gulp-phpunit', function() {
 		// act
 		try {
 			gulpunit({debug: true});
-		} catch (err) {
+		}
+    catch (err) {
 			caughtErr = err;
 		}
 

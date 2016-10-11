@@ -2,11 +2,11 @@ var _ = require('lodash');
 
 module.exports = {
 
-	defaults: function(args) {
+	defaults: function (args) {
 		return _.defaults(args);
 	},
 
-	notifyOptions: function(status, override) {
+	notifyOptions: function (status, override) {
 		var options = {
 			taskName: 'Task',
 			title: ( status === 'pass') ? 'Passed' : 'Failed',

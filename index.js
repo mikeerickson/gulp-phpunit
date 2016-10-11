@@ -1,4 +1,3 @@
-/*jshint node:true */
 /*global require*/
 /*global module*/
 
@@ -17,7 +16,7 @@ var notifier = require('node-notifier');
 var utils    = require('./src/utils.js');
 var shell    = require('shelljs');
 
-module.exports = function(command, opt, callback) {
+module.exports = function (command, opt, callback) {
 
 	var cmd      = '';
 	var launched = false;
@@ -36,6 +35,7 @@ module.exports = function(command, opt, callback) {
 		dryRun:             false,
 		notify:             true,
 		statusLine:         true,
+		showData:           false,
 
 		// code coverage options
 		coverageClover:     '',
@@ -106,12 +106,17 @@ module.exports = function(command, opt, callback) {
 		if (os.platform() === 'win32') {
 			command = command.replace(/[/]/g, '\\');
 		}
-	} else if (typeof command !== 'string') {
-		throw new gutil.PluginError(PLUGIN_NAME, 'Command Not Found: PHPUnit');
+	}
+	else {
+		if (typeof command !== 'string') {
+			throw new gutil.PluginError(PLUGIN_NAME, 'Command Not Found: PHPUnit');
+		}
 	}
 
 
-	return map( function(file, cb) {
+
+
+	return map( function (file, cb) {
 		// First file triggers the command, so other files does not matter
 		if (launched) {
 			return cb(null, file);
@@ -154,7 +159,8 @@ module.exports = function(command, opt, callback) {
 			if ( opt.colors !== 'disabled') {
 				if ( opt.colors === 'enabled') {
 					cmd += ' --colors';
-				} else {
+				}
+				else {
 					cmd += ' --colors=' + opt.colors;
 				}
 			}
@@ -186,7 +192,7 @@ module.exports = function(command, opt, callback) {
 		// - testClass
 
 		if ((file.path) && (! skip) && (!opt.noConfiguration)){
-			var ext = file.path.substr(file.path.lastIndexOf('.')+1);
+			var ext = file.path.substr(file.path.lastIndexOf('.') + 1);
 			if ( ext === 'xml') {
 				cmd += ' -c "' + file.path + '"'; skip = true;
 			}
@@ -219,12 +225,13 @@ module.exports = function(command, opt, callback) {
 			var vStr = '[Version] ' + VERSION;
 			if(opt.dryRun) {
 				console.log(chalk.green('\n\n       *** ' + vStr + ' Dry Run Cmd: ' + cmd  + ' ***\n'));
-			} else {
+			}
+			else {
 				console.log(chalk.yellow('\n\n       *** ' + vStr + ' Debug Cmd: ' + cmd  + ' ***\n'));
 			}
 		}
 
-		if( ! opt.dryRun ) {
+		if (!opt.dryRun) {
 
 			shell.exec(cmd,{async: true, silent: opt.silent}, function (error, stdout, stderr) {
 				if (!opt.silent && stderr) {
@@ -233,7 +240,7 @@ module.exports = function(command, opt, callback) {
 
 				// call user callback if error occurs
 				if (error) {
-					if ( opt.statusLine ) {
+					if (opt.statusLine) {
 						console.log('\n');
 						msg.chalkline.red();
 					}
@@ -245,14 +252,16 @@ module.exports = function(command, opt, callback) {
 						callback(new gutil.PluginError('gulp-phpunit', stderr || stdout));
 					}
 					cb(error, file);
-				} else {
+				}
+				else {
 					if ( opt.statusLine ) {
 						console.log('\n');
 						// if we have skipped tests, we will output a yellow chalkline
 						// otherwise it will be green
 						if (( opt.debug ) || ( stdout.indexOf('Skipped:') > 0 ) || ( stdout.indexOf('Incomplete:') > 0 )){
 							msg.chalkline.yellow();
-						} else {
+						}
+						else {
 							msg.chalkline.green();
 						}
 					}
@@ -269,10 +278,11 @@ module.exports = function(command, opt, callback) {
 					notifier.notify(options);
 				}
 
-			}).stdout.on('data', function(data) {
-				if (!opt.silent) {
+			}).stdout.on('data', function (data) {
+				if ((!opt.silent) && (opt.showData)) {
 					var str = data.toString();
-					process.stdout.write(str);
+					console.log(data);
+					//process.stdout.write(str);
 				}
 			});
 		}

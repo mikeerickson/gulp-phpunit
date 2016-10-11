@@ -1,9 +1,16 @@
 ## Changelog
 
+- 0.20.0
+    - Fixed issue with duplicate test result output [57](https://github.com/mikeerickson/gulp-phpunit/issues/57)
+      - This was a regression intorduced in 0.19
+    - Added new option `showData` which can be used to fix incorrect output (this was causing the duplicate output)
+    - Closed Issues
+      [57] (https://github.com/mikeerickson/gulp-phpunit/issues/57) https://github.com/mikeerickson/gulp-phpunit/issues/57
+
 - 0.17.0
     - Added optional callback method which will be executed when testing is complete.
-    
-      ```
+
+      ```javascript
       gulp.task('phpunit', function() {
         gulp.src('')
           .pipe(phpunit('phpunit.xml', opts, function(err, success){
@@ -15,13 +22,13 @@
 - 0.16.0 Changes
          Added --no-coverage option
          [43](https://github.com/mikeerickson/gulp-phpunit/issues/43)
-         ```
+         ```javascript
          var opts = { noCoverage: true } // default false
          gulp.src('phpunit.xml')
            .pipe(phpunit('./vendor/bin/phpunit',opts));
          });
          ```
-         
+
 - 0.15.2 Updated to provide `reveal` support accessible `npmaddict.com`
 
 - 0.15.1 Fixed module dependency issue
@@ -35,13 +42,13 @@
 
 - 0.12.1 Added support for disabling auto colors (supports older versions of PHPUnit)
     - When using older versions of PHPUnit (prior to 4.8.x) the default color option used by gulp-phpunit was causing !errors
-      - You can now turn off auto colors within gulp-phpunit by using the `colors: 'disabled' option 
+      - You can now turn off auto colors within gulp-phpunit by using the `colors: 'disabled' option
 
-        ```
+        ```javascript
         gulp.phpunit('',{colors: 'disabled'});
         ```
 
-- 0.12.0 Updated dependencies  
+- 0.12.0 Updated dependencies
 - 0.11.1 Updated module dependencies
 - 0.11.0 Bug Fixes and Code Refactoring
     - Fixed all know issues related to using configuration files
@@ -60,25 +67,25 @@
       - yellow for tests which have `debug` property enabled (will also display red, green status)
     - Notifications are on by default (if gulp-notify installed)
       - You can disable notifications using the `notify` property ( default: true )
-      
+
 - 0.10.0 Fixed Issues
     - Added new property `notify` which will conditionally display notifications (both in buffer and growl where available)
       - This property is `false` by default as to not affect existing installations.
       - You can enable by adding in `options` parameter (options.notify = true)
-      
-    - Fixed issues when supplying `testsuite` 
-    
+
+    - Fixed issues when supplying `testsuite`
+
     - Closed Issues
       [30] (https://github.com/mikeerickson/gulp-phpunit/issues/30) https://github.com/mikeerickson/gulp-phpunit/issues/30
       [27] (https://github.com/mikeerickson/gulp-phpunit/issues/27) https://github.com/mikeerickson/gulp-phpunit/issues/27
       [17] (https://github.com/mikeerickson/gulp-phpunit/issues/27) https://github.com/mikeerickson/gulp-phpunit/issues/17
-      
+
 - 0.9.0 Fixed Issues
     - Fixed issue when supplying a configuration file (either through configuration option or file parameter)
     - Added bounds check to assure file supplied as `src` parameter is an actual configuration file
       - I am only checking to assure it is an .xml file, not a VALID xml file
     - Tested against Elixir 3.0 for compatibility
-    
+
     - Closed Issues:
       [23] (https://github.com/mikeerickson/gulp-phpunit/issues/22) https://github.com/mikeerickson/gulp-phpunit/issues/22
       [23] (https://github.com/mikeerickson/gulp-phpunit/issues/23) https://github.com/mikeerickson/gulp-phpunit/issues/23
@@ -90,13 +97,13 @@
     - Fixed issue with gulp.src not correctly using supplied phpunit.xml file
     - Added stdout datastream for live logging of phpunit's progress.
     - Updated internal gulp dependencies (getting ready for gulp 4 support)
-    
+
 - 0.7.0 Added Plugin Resources
     - Added new icons for pass and fail which can be used by notify plugin (see example below for usage)
       /assets/test-pass.png
       /assets/test-fail.png
     - Added missing 'verbose' flag to PHPUnit command call (option existed but wasn't used).
-   
+
 - 0.6.3 Updated general options
     - Changed dry run output text color
 
@@ -114,38 +121,38 @@
       - coveragePHP
       - coverageText
       - coverageXML
-      
+
     - Added Logging Options
       - logJunit
       - logTap
       - logJson
-      - testdoxHtml 
+      - testdoxHtml
       - testdoxText
-      
+
     - Added Test Selection Options
       - filter
       - testsuite
-      - group 
-      - excludeGroup 
-      - testSuffix 
-      
+      - group
+      - excludeGroup
+      - testSuffix
+
     - Added Test Execution Options
       - reportUseless
       - strictCoverage
       - disallowTestOutput
       - enforceTimeLimit
       - strict
-      - isolation 
-      - noGlobals 
-      - staticBackup 
-      - stopOnError 
-      - stopOnFailure 
-      - stopOnRisky 
-      - stopOnSkipped 
-      - displayDebug 
+      - isolation
+      - noGlobals
+      - staticBackup
+      - stopOnError
+      - stopOnFailure
+      - stopOnRisky
+      - stopOnSkipped
+      - displayDebug
       - testdox
       - tap
-      
+
     - Added Configuration Options
       - includePath
       - noColor
@@ -157,7 +164,7 @@
 - 0.5.2: Small adjustments and Configuration File Support (thanks @wayneashleyberry)
    - Added Configuration File Support
    - Removed Node 0.9 from Travis support
-   
+
 - 0.5.1: Added CI Support
     - Added .travis support
     - Added .circle support
