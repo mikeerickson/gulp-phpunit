@@ -3,10 +3,9 @@
 
 'use strict';
 
-debugger;
 
-var VERSION     = require('./package.json').version;
-var PLUGIN_NAME = require('./package.json').name;
+var VERSION     = require('./package.json').version
+var PLUGIN_NAME = require('./package.json').name
 
 var _        = require('lodash');
 var map      = require('map-stream');

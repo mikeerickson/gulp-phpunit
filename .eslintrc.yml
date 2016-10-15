@@ -81,8 +81,7 @@ rules:
   # operator-linebreak: [1, 'before', {overrides: {'=': 'after'}}]
   operator-linebreak: 0
   quotes: [1, 'single', 'avoid-escape'] # fixable
-  # semi: [1, 'always'] # fixable
-  semi: 0 # fixable
+  semi: [1, 'always'] # fixable
   space-before-function-paren: [1, {anonymous: 'always', named: 'never'}] # fixable
   space-in-parens: 0 # 1
   space-infix-ops: 2 # fixable
