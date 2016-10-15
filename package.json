@@ -38,7 +38,9 @@
   },
   "keywords": [
     "gulpplugin",
-    "phpunit"
+    "phpunit",
+    "gulp",
+    "gulp-phpunit"
   ],
   "author": {
     "name": "codedungeon",
