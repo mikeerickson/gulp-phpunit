@@ -3,6 +3,8 @@
 
 'use strict';
 
+debugger;
+
 var VERSION     = require('./package.json').version;
 var PLUGIN_NAME = require('./package.json').name;
 
