@@ -26,7 +26,7 @@
   },
   "scripts": {
     "test": "mocha --reporter spec && jshint ./*.js && jshint ./test/*.js",
-    "eslint": "eslint \"./**/*.js\" || true",
+    "eslint": "eslint \"./**/*.js\"",
     "lint-staged": "lint-staged"
   },
   "lint-staged": {
