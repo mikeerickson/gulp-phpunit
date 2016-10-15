@@ -19,13 +19,12 @@
     "gulp": "3.9.1",
     "gulp-mocha": "3.0.1",
     "gulp-shell": "0.5.2",
-    "jshint": "2.9.3",
     "lint-staged": "3.1.0",
     "mocha": "3.0.2",
     "should": "11.1.0"
   },
   "scripts": {
-    "test": "mocha --reporter spec && jshint ./*.js && jshint ./test/*.js",
+    "test": "mocha --reporter spec && npm run eslint",
     "eslint": "eslint \"./**/*.js\"",
     "lint-staged": "lint-staged"
   },
