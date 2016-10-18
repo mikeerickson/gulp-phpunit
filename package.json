@@ -15,7 +15,7 @@
     "shelljs": "0.7.4"
   },
   "devDependencies": {
-    "eslint": "3.8.0",
+    "eslint": "3.8.1",
     "gulp": "3.9.1",
     "gulp-mocha": "3.0.1",
     "gulp-shell": "0.5.2",
