@@ -1,6 +1,6 @@
 {
   "name": "gulp-phpunit",
-  "version": "0.20.1",
+  "version": "0.21.2",
   "description": "PHPUnit plugin for Gulp",
   "main": "index.js",
   "reveal": true,
@@ -21,8 +21,7 @@
     "gulp-mocha": "3.0.1",
     "gulp-shell": "0.5.2",
     "lint-staged": "3.2.0",
-    "mocha": "3.1.2",
-    "should": "11.1.0"
+    "mocha": "3.1.2"
   },
   "scripts": {
     "test": "mocha --reporter spec && npm run eslint",
