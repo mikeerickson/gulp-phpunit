@@ -1,52 +1,38 @@
 'use strict';
 
-var gulpunit = require('../'),
-  should     = require('should');
-
-require('mocha');
+var gulpunit = require('../');
+var chai     = require('chai');
+var should   = chai.should();
 
 describe('gulp-phpunit', function () {
 
+  var caughtErr;
+
 	it('should not throw error if no parameters passed', function (done) {
 
-		// Arrange
-		var caughtErr;
-
-		// Act
 		try {
 			gulpunit();
 		}
     catch (err) {
 			caughtErr = err;
 		}
-
-		// Assert
 		should.not.exist(caughtErr);
 
-		// exit gracefully
 		done();
 
 	});
 
 	it('should throw error if object passed as first parameter', function (done) {
 
-		// arrange
-		var caughtErr;
-
-		// act
 		try {
 			gulpunit({debug: true});
 		}
     catch (err) {
 			caughtErr = err;
 		}
-
-		// assert
 		should.exist(caughtErr);
 
-		// exit gracefully
 		done();
 
 	});
-
 });
