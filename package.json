@@ -51,6 +51,6 @@
     "url": "https://github.com/mikeerickson/gulp-phpunit/issues"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">= 4"
   }
 }
