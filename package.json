@@ -6,7 +6,7 @@
   "reveal": true,
   "dependencies": {
     "chalk": "1.1.3",
-    "gulp-messenger": "0.24.0",
+    "gulp-messenger": "0.25.1",
     "gulp-notify": "^2.2.0",
     "gulp-util": "3.0.7",
     "lodash": "^4.15.0",
