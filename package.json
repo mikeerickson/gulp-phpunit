@@ -21,7 +21,7 @@
     "gulp-mocha": "3.0.1",
     "gulp-shell": "0.5.2",
     "lint-staged": "3.2.0",
-    "mocha": "3.1.2"
+    "mocha": "3.2.0"
   },
   "scripts": {
     "test": "mocha --reporter spec",
