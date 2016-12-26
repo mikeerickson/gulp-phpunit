@@ -8,7 +8,7 @@
     "chalk": "1.1.3",
     "gulp-messenger": "0.24.0",
     "gulp-notify": "^2.2.0",
-    "gulp-util": "3.0.7",
+    "gulp-util": "3.0.8",
     "lodash": "^4.15.0",
     "map-stream": "~0.0.4",
     "node-notifier": "4.6.1",
