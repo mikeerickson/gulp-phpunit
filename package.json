@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "chai": "3.5.0",
-    "eslint": "3.8.1",
+    "eslint": "3.10.1",
     "gulp": "3.9.1",
     "gulp-mocha": "3.0.1",
     "gulp-shell": "0.5.2",
