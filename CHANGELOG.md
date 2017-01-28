@@ -1,5 +1,9 @@
 ## Changelog
 
+- 0.21.0
+    - Updated dependencies
+      - node-notifier@^5 reduces package size significantly
+      
 - 0.20.0
     - Fixed issue with duplicate test result output [57](https://github.com/mikeerickson/gulp-phpunit/issues/57)
       - This was a regression intorduced in 0.19
