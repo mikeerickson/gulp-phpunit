@@ -1,9 +1,12 @@
 ## Changelog
 
+- 0.22.1
+    - Fixed `--no-coverage` flag setting when supplied [Issue 104](https://github.com/mikeerickson/gulp-phpunit/issues/104)
+
 - 0.21.0
     - Updated dependencies
-      - node-notifier@^5 reduces package size significantly
-      
+      - `node-notifier@^5` reduces package size significantly
+
 - 0.20.0
     - Fixed issue with duplicate test result output [57](https://github.com/mikeerickson/gulp-phpunit/issues/57)
       - This was a regression intorduced in 0.19

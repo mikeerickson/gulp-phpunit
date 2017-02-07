@@ -202,7 +202,7 @@ module.exports = function (command, opt, callback) {
 			cmd += ' -c ' + opt.configurationFile;
 		}
 
-		if ((! skip) && (! opt.noCoverage)) {
+		if ((! skip) && (opt.noCoverage)) {
 			cmd += ' --no-coverage ';
 		}
 
