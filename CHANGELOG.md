@@ -1,6 +1,6 @@
 ## Changelog
 
-- 0.22.1
+- 0.22.2
     - Fixed `--no-coverage` flag setting when supplied [Issue 104](https://github.com/mikeerickson/gulp-phpunit/issues/104)
 
 - 0.21.0
