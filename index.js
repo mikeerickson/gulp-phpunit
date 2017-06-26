@@ -1,5 +1,4 @@
-/*global require*/
-/*global module*/
+/*global module, require*/
 
 'use strict';
 
