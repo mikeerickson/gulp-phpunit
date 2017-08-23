@@ -1,5 +1,17 @@
 ## Changelog
 
+- 0.24.0
+    - Add entrypoint for `prettyPrinter` -- requires (https://packagist.org/packages/codedungeon/phpunit-result-printer)
+
+      ```javascript
+      var opts = { prettyPrinter: true } // default false
+      gulp.src('phpunit.xml')
+        .pipe(phpunit('./vendor/bin/phpunit',opts));
+      });
+      ```
+      - **Pretty Printer Installation**
+        `$ composer require codedungeon/phpunit-result-printer`
+
 - 0.22.2
     - Fixed `--no-coverage` flag setting when supplied [Issue 104](https://github.com/mikeerickson/gulp-phpunit/issues/104)
 
@@ -9,7 +21,7 @@
 
 - 0.20.0
     - Fixed issue with duplicate test result output [57](https://github.com/mikeerickson/gulp-phpunit/issues/57)
-      - This was a regression intorduced in 0.19
+      - This was a regression introduced in 0.19
     - Added new option `showData` which can be used to fix incorrect output (this was causing the duplicate output)
     - Closed Issues
       [57] (https://github.com/mikeerickson/gulp-phpunit/issues/57) https://github.com/mikeerickson/gulp-phpunit/issues/57

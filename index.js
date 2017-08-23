@@ -35,6 +35,7 @@ module.exports = function (command, opt, callback) {
     notify:             true,
     statusLine:         true,
     showData:           false,
+    prettyPrinter:      false,
 
     // code coverage options
     coverageClover:     '',
@@ -112,9 +113,6 @@ module.exports = function (command, opt, callback) {
     }
   }
 
-
-
-
   return map( function (file, cb) {
     // First file triggers the command, so other files does not matter
     if (launched) {
@@ -175,7 +173,8 @@ module.exports = function (command, opt, callback) {
     if(opt.repeat)              { cmd += ' --repeat=' + opt.repeat; }
     if(opt.tap)                 { cmd += ' --tap'; }
     if(opt.testdox)             { cmd += ' --testdox'; }
-    if(opt.printer)             { cmd += ' --printer=' + opt.printer; }
+    if((opt.printer) && (! opt.prettyPrinter)) { cmd += ' --printer=' + opt.printer; }
+    if(opt.prettyPrinter)       { cmd += "--printer='Codedungeon\PHPUnitPrettyResultPrinter\Printer'"; }
     if(opt.debug)               { cmd += ' --debug'; }
 
     /* configuration options */
