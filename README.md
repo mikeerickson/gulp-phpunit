@@ -1,5 +1,5 @@
 # gulp-phpunit
-Gulp plugin to control phpUnit 
+Gulp plugin to control PHPUnit 
 
 ## Installation
 
@@ -8,25 +8,6 @@ First, install `gulp-phpunit` as a development dependency:
 ```
 npm i -D gulp-phpunit
 ```
-
-#### Laravel Elixir Users
-If you are using gulp-phpunit with laravel-elixir prior to version 4.0, it will install gulp-phpunit 0.9.0. If you wish to upgrade to the lastest version of gulp-phpunit, you can do so by performing the following:
-
-```
-$ cd node_modules/laravel-elixir
-$ npm install -D gulp-phpunit@latest
-```
-
-#### Laravel Elixir Duplicate Notifications
-As of this release, the current version of Elixir 4.0.x, notification messages are used throughout Elixir operation, thus you may want to disable gulp-phpunit default notifications.
-This can be done using the optional `options` passed to mix.phpUnit as follows (for more information about available gulp-phpunit options, please refer to descriptions below)
-
-```
-    elixir(function(mix) {
-      mix.phpUnit('',{notify: false});   // this will disable gulp-phpUnit internal notifications
-    });
-```
-
 ## Usage
 
 After you have installed plugin, reference in to your `gulpfile.js`:
@@ -77,6 +58,25 @@ gulp.task('phpunit', function() {
 });
 ```
 
+**Option 4:** Using callback when testing completed
+
+```javascript
+var gulp    = require('gulp');
+var phpunit = require('gulp-phpunit');
+
+gulp.task('phpunit', function() {
+  gulp.src('phpunit.xml')
+    .pipe(phpunit('./vendor/bin/phpunit', {}, function(err, msg) {
+      
+      // null if no error
+      // 1 if error
+      if(err) { 
+        console.log('Error' + err);
+      }
+      console.log(msg);
+    }));
+});
+```
 **Note:** Windows OS may require double backslashes if using other than default location 
 
 ```javascript
@@ -90,7 +90,7 @@ gulp.task('phpunit', function() {
 
 ## API
 
-### phpunit(phpunitpath,options)
+### phpunit(phpunitpath,options, [callback])
 
 #### phpunitpath
 
@@ -160,7 +160,12 @@ Define a path to an xml configuration file (supply full path and filename)
   - If `configurationFile` property supplied in options, it will be used as configuration file
   - If you enable `noConfigurationFile` property, no configuration file will be used
 
+#### callback
+Type: `function`
 
+You may supply an optional callback which will be called when testing has completed.  The callback follows the standard nodejs callback signature
+
+function callback(err, msg) {}
 
 ## Code Coverage Options:
 
@@ -404,4 +409,4 @@ E-Mail: [codedungeon@gmail.com](mailto:codedungeon@gmail.com)
 
 Twitter: [@codedungeon](http://twitter.com/codedungeon)
 
-Website: [codedungeon.org](http://codedungeon.org)
+Website: [github.com/mikeerickson](https://github.com/mikeerickson)

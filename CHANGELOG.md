@@ -1,5 +1,8 @@
 ## Changelog
 
+- 0.25.0
+    - Implemented `callback support`
+    - Removed `gulp-util` Issue [113](https://github.com/mikeerickson/gulp-phpunit/issues/113)
 - 0.24.0
     - Add entrypoint for `prettyPrinter` -- requires (https://packagist.org/packages/codedungeon/phpunit-result-printer)
 
