@@ -5,15 +5,15 @@
 var VERSION     = require('./package.json').version;
 var PLUGIN_NAME = require('./package.json').name;
 
-var _        = require('lodash');
-var map      = require('map-stream');
-var gutil    = require('gulp-util');
-var os       = require('os');
-var chalk    = require('chalk');
-var msg      = require('gulp-messenger');
-var notifier = require('node-notifier');
-var utils    = require('./src/utils.js');
-var shell    = require('shelljs');
+var _              = require('lodash');
+var chalk          = require('chalk');
+var map            = require('map-stream');
+var msg            = require('gulp-messenger');
+var notifier       = require('node-notifier');
+var os             = require('os');
+var PluginError    = require('plugin-error');
+var shell          = require('shelljs');
+var utils          = require('./src/utils.js');
 
 module.exports = function (command, opt, callback) {
 
@@ -109,7 +109,7 @@ module.exports = function (command, opt, callback) {
   }
   else {
     if (typeof command !== 'string') {
-      throw new gutil.PluginError(PLUGIN_NAME, 'Command Not Found: PHPUnit');
+      throw new PluginError(PLUGIN_NAME, 'Command Not Found: PHPUnit');
     }
   }
 
@@ -250,10 +250,12 @@ module.exports = function (command, opt, callback) {
               msg.error(error);
               msg.chalkline.yellow();
             }
-            if(_.isFunction(callback)) {
-              callback(new gutil.PluginError('gulp-phpunit', stderr || stdout));
+            if (_.isFunction(callback)) {
+              callback(error, 'Testing Failed' + stderr);
+            } else {
+              cb(error, file);
             }
-            cb(error, file);
+
           }
           else {
             if ( opt.statusLine ) {
@@ -268,7 +270,7 @@ module.exports = function (command, opt, callback) {
               }
             }
             if(_.isFunction(callback)) {
-              callback(null, stderr || stdout);
+              callback(null, 'Testing Passed');
             }
             cb(null, file);
           }

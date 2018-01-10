@@ -10,31 +10,31 @@ describe('gulp-phpunit', function () {
 
   var caughtErr;
 
-	it('should not throw error if no parameters passed', function (done) {
+  it('should not throw error if no parameters passed', function (done) {
 
-		try {
-			gulpunit();
-		}
+    try {
+      gulpunit();
+    }
     catch (err) {
-			caughtErr = err;
-		}
-		should.not.exist(caughtErr);
+      caughtErr = err;
+    }
+    should.not.exist(caughtErr);
 
-		done();
+    done();
 
-	});
+  });
 
-	it('should throw error if object passed as first parameter', function (done) {
+  it('should throw error if object passed as first parameter', function (done) {
 
-		try {
-			gulpunit({debug: true});
-		}
+    try {
+      gulpunit({debug: true});
+    }
     catch (err) {
-			caughtErr = err;
-		}
-		should.exist(caughtErr);
+      caughtErr = err;
+    }
+    should.exist(caughtErr);
 
-		done();
+    done();
 
-	});
+  });
 });

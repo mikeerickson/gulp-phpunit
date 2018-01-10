@@ -8,10 +8,10 @@
     "chalk": "^2.0.1",
     "gulp-messenger": "0.26.0",
     "gulp-notify": "3.0.0",
-    "gulp-util": "3.0.8",
     "lodash": "^4.15.0",
     "map-stream": "~0.0.4",
     "node-notifier": "5.0.2",
+    "plugin-error": "^0.1.2",
     "shelljs": "0.7.6"
   },
   "devDependencies": {
