@@ -1,10 +1,13 @@
-## Changelog
+# Changelog
 
+- 0.26.0
+  - Refactor `chalkline` access to use native module (removed from `gulp-messenger`)
+  - Changed `no-coverage` option to remove check for existing configuration file.  This option should allow setting, regardless of existence of configuration file.
 - 0.25.0
-    - Implemented `callback support`
-    - Removed `gulp-util` Issue [113](https://github.com/mikeerickson/gulp-phpunit/issues/113)
+  - Implemented `callback support`
+  - Removed `gulp-util` Issue [113](https://github.com/mikeerickson/gulp-phpunit/issues/113)
 - 0.24.0
-    - Add entrypoint for `prettyPrinter` -- requires (https://packagist.org/packages/codedungeon/phpunit-result-printer)
+  - Add entrypoint for `prettyPrinter` -- requires (https://packagist.org/packages/codedungeon/phpunit-result-printer)
 
       ```javascript
       var opts = { prettyPrinter: true } // default false
@@ -16,21 +19,21 @@
         `$ composer require codedungeon/phpunit-result-printer`
 
 - 0.22.2
-    - Fixed `--no-coverage` flag setting when supplied [Issue 104](https://github.com/mikeerickson/gulp-phpunit/issues/104)
+  - Fixed `--no-coverage` flag setting when supplied [Issue 104](https://github.com/mikeerickson/gulp-phpunit/issues/104)
 
 - 0.21.0
-    - Updated dependencies
-      - `node-notifier@^5` reduces package size significantly
+  - Updated dependencies
+  - `node-notifier@^5` reduces package size significantly
 
 - 0.20.0
-    - Fixed issue with duplicate test result output [57](https://github.com/mikeerickson/gulp-phpunit/issues/57)
-      - This was a regression introduced in 0.19
-    - Added new option `showData` which can be used to fix incorrect output (this was causing the duplicate output)
-    - Closed Issues
+  - Fixed issue with duplicate test result output [57](https://github.com/mikeerickson/gulp-phpunit/issues/57)
+  - This was a regression introduced in 0.19
+  - Added new option `showData` which can be used to fix incorrect output (this was causing the duplicate output)
+  - Closed Issues
       [57] (https://github.com/mikeerickson/gulp-phpunit/issues/57) https://github.com/mikeerickson/gulp-phpunit/issues/57
 
 - 0.17.0
-    - Added optional callback method which will be executed when testing is complete.
+  - Added optional callback method which will be executed when testing is complete.
 
       ```javascript
       gulp.task('phpunit', function() {
@@ -73,10 +76,10 @@
 - 0.12.0 Updated dependencies
 - 0.11.1 Updated module dependencies
 - 0.11.0 Bug Fixes and Code Refactoring
-    - Fixed all know issues related to using configuration files
-      - If `.xml` file supplied as task source, it will be used as configuration file
-      - If `configurationFile` property supplied in options, it will be used as configuration file
-      - If you enable `noConfigurationFile` property, no configuration file will be used
+  - Fixed all know issues related to using configuration files
+    - If `.xml` file supplied as task source, it will be used as configuration file
+    - If `configurationFile` property supplied in options, it will be used as configuration file
+    - If you enable `noConfigurationFile` property, no configuration file will be used
     - Refactored internal options object
     - Fixed issue when using configuration files ( -c option )
     - Removed spurious console.log statement

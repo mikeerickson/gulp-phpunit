@@ -6,3 +6,5 @@ config.codekit
 scratch.txt
 npm-debug.log
 NOTES.md
+.history/
+.vscode/

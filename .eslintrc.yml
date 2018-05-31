@@ -76,7 +76,7 @@ rules:
   no-mixed-spaces-and-tabs: 2
   no-spaced-func: 1 # fixable
   no-unneeded-ternary: [2, {defaultAssignment: false}]
-  object-curly-spacing: 1 # fixable
+  object-curly-spacing: 0 # fixable
   one-var-declaration-per-line: 1
   # operator-linebreak: [1, 'before', {overrides: {'=': 'after'}}]
   operator-linebreak: 0
